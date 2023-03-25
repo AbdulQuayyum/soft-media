@@ -24,7 +24,7 @@ const Login = () => {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              onSuccess={response => { CreateOrGetUser(response) }}
+              onSuccess={CreateOrGetUser()}
               onError={() => {
                 console.log('Login Failed');
               }}
