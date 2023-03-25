@@ -81,17 +81,17 @@ export const feedQuery = `*[_type == "pin"] | order(_createdAt desc) {
     },
         _id,
         destination,
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
         save[]{
           _key,
-          postedBy->{
+          PostedBy->{
             _id,
-            userName,
-            image
+            UserName,
+            Image
           },
         },
       } `;
@@ -108,25 +108,25 @@ export const pinDetailQuery = (pinId) => {
       about,
       category,
       destination,
-      postedBy->{
+      PostedBy->{
         _id,
-        userName,
-        image
+        UserName,
+        Image
       },
      save[]{
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
       },
       comments[]{
         comment,
         _key,
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
       }
     }`;
@@ -142,17 +142,17 @@ export const pinDetailMorePinQuery = (pin) => {
       },
       _id,
       destination,
-      postedBy->{
+      PostedBy->{
         _id,
-        userName,
-        image
+        UserName,
+        Image
       },
       save[]{
         _key,
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
       },
     }`;
@@ -168,17 +168,17 @@ export const searchQuery = (searchTerm) => {
           },
               _id,
               destination,
-              postedBy->{
+              PostedBy->{
                 _id,
-                userName,
-                image
+                UserName,
+                Image
               },
               save[]{
                 _key,
-                postedBy->{
+                PostedBy->{
                   _id,
-                  userName,
-                  image
+                  UserName,
+                  Image
                 },
               },
             }`;
@@ -199,16 +199,16 @@ export const userCreatedPinsQuery = (userId) => {
       },
       _id,
       destination,
-      postedBy->{
+      PostedBy->{
         _id,
-        userName,
-        image
+        UserName,
+        Image
       },
       save[]{
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
       },
     }`;
@@ -224,16 +224,16 @@ export const userSavedPinsQuery = (userId) => {
       },
       _id,
       destination,
-      postedBy->{
+      PostedBy->{
         _id,
-        userName,
-        image
+        UserName,
+        Image
       },
       save[]{
-        postedBy->{
+        PostedBy->{
           _id,
-          userName,
-          image
+          UserName,
+          Image
         },
       },
     }`;
