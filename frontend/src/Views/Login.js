@@ -2,6 +2,7 @@ import React from 'react'
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom';
+import { CreateOrGetUser } from "../Utilities/Index"
 import { Logo, Share } from '../Assets/Index';
 
 const Login = () => {
@@ -23,9 +24,7 @@ const Login = () => {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              onSuccess={credentialResponse => {
-                console.log(credentialResponse);
-              }}
+              onSuccess={response => { CreateOrGetUser(response) }}
               onError={() => {
                 console.log('Login Failed');
               }}
