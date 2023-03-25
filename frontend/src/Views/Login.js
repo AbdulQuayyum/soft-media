@@ -1,5 +1,6 @@
 import React from 'react'
 import { FcGoogle } from 'react-icons/fc';
+import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom';
 import { Logo, Share } from '../Assets/Index';
 
@@ -19,6 +20,16 @@ const Login = () => {
         <div className="absolute top-0 bottom-0 left-0 right-0 flex flex-col items-center justify-center bg-blackOverlay">
           <div className="p-5">
             <img src={Logo} alt="..." width="130px" />
+          </div>
+          <div className="shadow-2xl">
+            <GoogleLogin
+              onSuccess={credentialResponse => {
+                console.log(credentialResponse);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
           </div>
         </div>
       </div>
