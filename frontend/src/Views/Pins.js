@@ -8,14 +8,14 @@ const Pins = ({ User }) => {
     return (
         <div className="px-2 md:px-5">
             <div className="bg-gray-50">
-                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} user={User && User} />
+                <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} User={User && User} />
             </div>
             <div className="h-full">
                 <Routes>
                     <Route path="/" element={<Feed />} />
                     <Route path="/Category/:categoryId" element={<Feed />} />
-                    <Route path="/PinDetail/:pinId" element={<PinDetail user={User && User} />} />
-                    <Route path="/CreatePin" element={<CreatePin user={User && User} />} />
+                    <Route path="/PinDetail/:pinId" element={<PinDetail User={User && User} />} />
+                    <Route path="/CreatePin" element={<CreatePin User={User && User} />} />
                     <Route path="/Search" element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
                 </Routes>
             </div>
