@@ -1,11 +1,31 @@
 import React from 'react'
+import jwt_decode from "jwt-decode"
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom';
-import { CreateOrGetUser } from "../Utilities/Index"
+// import { CreateOrGetUser } from "../Utilities/Index"
 import { Logo, Share } from '../Assets/Index';
+import { Client } from '../Utilities/Client';
 
 const Login = () => {
+  // const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const navigate = useNavigate();
+
+  const CreateOrGetUser = (response) => {
+    const decoded = jwt_decode(response.credential)
+    localStorage.setItem("User", JSON.stringify(decoded))
+    const { name, picture, sub } = decoded
+
+    const User = {
+      _id: sub,
+      _type: 'User',
+      userName: name,
+      image: picture,
+    }
+    // Client.createIfNotExists(user).then(() => {
+    //   navigate('/', { replace: true });
+    // });
+  }
   return (
     <div className="flex flex-col items-center justify-start h-screen">
       <div className="relative w-full h-full ">
@@ -24,10 +44,8 @@ const Login = () => {
           </div>
           <div className="shadow-2xl">
             <GoogleLogin
-              onSuccess={CreateOrGetUser()}
-              onError={() => {
-                console.log('Login Failed');
-              }}
+              onSuccess={response => { CreateOrGetUser(response) }}
+              onError={() => { console.log('Login Failed') }}
             />
           </div>
         </div>
