@@ -7,7 +7,7 @@ import { Client } from '../Utilities/Client';
 import { Logo } from '../Assets/Index';
 import { Pins } from './Index';
 import { Sidebar, UserProfile } from "../Components/Index"
-import { userQuery } from "../Utilities/Data"
+import { UserQuery } from "../Utilities/Data"
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
@@ -18,7 +18,7 @@ const Home = () => {
   // console.log(userInfo.picture);
 
   useEffect(() => {
-    const query = userQuery(userInfo?.sub);
+    const query = UserQuery(userInfo?.sub);
 
     // console.log(query);
 

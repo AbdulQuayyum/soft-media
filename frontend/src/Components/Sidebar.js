@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
-import { categories } from "../Utilities/Data"
+import { Categories } from "../Utilities/Data"
 import { Logo } from "../Assets/Index"
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
@@ -34,15 +34,15 @@ const Sidebar = ({ closeToggle, user }) => {
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {Categories.slice(0, Categories.length ).map((Category) => (
             <NavLink
-              to={`/category/${category.name}`}
+              to={`/Category/${Category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
               onClick={handleCloseSidebar}
-              key={category.name}
+              key={Category.name}
             >
-              <img src={category.image} alt="..." className="w-8 h-8 rounded-full shadow-sm" />
-              {category.name}
+              <img src={Category.image} alt="..." className="w-8 h-8 rounded-full shadow-sm" />
+              {Category.name}
             </NavLink>
           ))}
         </div>
