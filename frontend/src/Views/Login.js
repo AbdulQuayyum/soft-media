@@ -1,9 +1,7 @@
 import React from 'react'
 import jwt_decode from "jwt-decode"
-import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom';
-// import { CreateOrGetUser } from "../Utilities/Index"
 import { Logo, Share } from '../Assets/Index';
 import { Client } from '../Utilities/Client';
 
@@ -19,12 +17,13 @@ const Login = () => {
     const User = {
       _id: sub,
       _type: 'User',
-      userName: name,
-      image: picture,
+      UserName: name,
+      Image: picture,
     }
-    // Client.createIfNotExists(user).then(() => {
-    //   navigate('/', { replace: true });
-    // });
+    Client.createIfNotExists(User)
+      .then(() => {
+        navigate('/', { replace: true });
+      });
   }
   return (
     <div className="flex flex-col items-center justify-start h-screen">
