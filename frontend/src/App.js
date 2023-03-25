@@ -1,4 +1,4 @@
-import MainRoutes from "./Routes/MainRoutes";
+import MainRoutes from "./Routes/Main.Routes";
 
 const App = () => {
   return (
