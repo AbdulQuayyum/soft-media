@@ -73,7 +73,7 @@ export const Categories = [
   }
 ];
 
-export const FeedQuery = `*[_type == "pin"] | order(_createdAt desc) {
+export const FeedQuery = `*[_type == "Pin"] | order(_createdAt desc) {
     image{
       asset->{
         url
@@ -160,7 +160,7 @@ export const PinDetailMorePinQuery = (pin) => {
 };
 
 export const SearchQuery = (searchTerm) => {
-  const query = `*[_type == "pin" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
+  const query = `*[_type == "Pin" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
           image{
             asset->{
               url
