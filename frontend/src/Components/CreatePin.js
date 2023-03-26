@@ -9,12 +9,12 @@ import { Client } from '../Utilities/Client';
 import Spinner from "./Spinner"
 
 const CreatePin = ({ User }) => {
-  const [title, setTitle] = useState('');
-  const [about, setAbout] = useState('');
+  const [Title, setTitle] = useState('');
+  const [About, setAbout] = useState('');
   const [loading, setLoading] = useState(false);
-  const [destination, setDestination] = useState();
+  const [Destination, setDestination] = useState();
   const [fields, setFields] = useState();
-  const [category, setCategory] = useState();
+  const [Category, setCategory] = useState();
   const [imageAsset, setImageAsset] = useState();
   const [wrongImageType, setWrongImageType] = useState(false);
   const navigate = useNavigate();
@@ -53,12 +53,12 @@ const CreatePin = ({ User }) => {
   };
 
   const savePin = () => {
-    if (title && about && destination && imageAsset?._id && category) {
+    if (Title && About && Destination && imageAsset?._id && Category) {
       const doc = {
         _type: 'Pin',
-        title,
-        about,
-        destination,
+        Title,
+        About,
+        Destination,
         Image: {
           _type: 'Image',
           asset: {
@@ -71,7 +71,7 @@ const CreatePin = ({ User }) => {
           _type: 'PostedBy',
           _ref: User._id,
         },
-        category,
+        Category,
       };
       Client.create(doc).then(() => {
         navigate('/');
@@ -107,7 +107,7 @@ const CreatePin = ({ User }) => {
             {!imageAsset ? (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
               <label>
-                <div className="flex flex-col items-center justify-center h-full">
+                <div className="flex cursor-pointer flex-col items-center justify-center h-full">
                   <div className="flex flex-col justify-center items-center">
                     <p className="font-bold text-5xl">
                       <AiOutlineCloudUpload />
@@ -148,9 +148,9 @@ const CreatePin = ({ User }) => {
         <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
           <input
             type="text"
-            value={title}
+            value={Title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Add a title"
+            placeholder="Add a Title"
             className="outline-none text-xl sm:text-2xl font-bold border-b-2 border-gray-200 p-2"
           />
           {User && (
@@ -165,16 +165,16 @@ const CreatePin = ({ User }) => {
           )}
           <input
             type="text"
-            value={about}
+            value={About}
             onChange={(e) => setAbout(e.target.value)}
-            placeholder="Tell everyone what your Pin is about"
+            placeholder="Tell everyone what your Pin is About"
             className="outline-none text-base border-b-2 border-gray-200 p-2"
           />
           <input
             type="url"
-            vlaue={destination}
+            vlaue={Destination}
             onChange={(e) => setDestination(e.target.value)}
-            placeholder="Add a destination link"
+            placeholder="Add a Destination link"
             className="outline-none text-base border-b-2 border-gray-200 p-2"
           />
 
@@ -195,14 +195,15 @@ const CreatePin = ({ User }) => {
                 ))}
               </select> */}
               <Select
-              className='py-2'
-                onChange={(e) => { setCategory(e.target.value); }} 
+                className='py-2'
+                styles={customStyles}
+                placeholder="Select Category"
                 options={Categories}
+                value={Category?.name}
                 getOptionLabel={(Categories) => Categories.name}
                 getOptionValue={(Categories) => Categories.name}
-                placeholder="Select category"
-                styles={customStyles}
-                />
+                onChange={(e) => { setCategory(e?.name) }}
+              />
             </div>
             <div className="flex justify-end items-end mt-5">
               <button
