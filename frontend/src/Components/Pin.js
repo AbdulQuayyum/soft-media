@@ -14,13 +14,14 @@ const Pin = ({ Pin }) => {
   const navigate = useNavigate();
   
   const { PostedBy, Image, _id, Destination } = Pin;
-  console.log(Pin)
+  // console.log(Pin)
 
   const userInfo = localStorage.getItem('User') !== 'undefined' ? JSON.parse(localStorage.getItem('User')) : localStorage.clear();
 
   const deletePin = (id) => {
     Client
       .delete(id)
+      // console.log('deleted', id)
       .then(() => {
         window.location.reload();
       });
@@ -38,11 +39,11 @@ const Pin = ({ Pin }) => {
 
       Client
         .patch(id)
-        .setIfMissing({ save: [] })
-        .insert('after', 'save[-1]', [{
+        .setIfMissing({ Save: [] })
+        .insert('after', 'Save[-1]', [{
           _key: uuidv4(),
-          userId: userInfo?.sub,
-          postedBy: {
+          UserID: userInfo?.sub,
+          PostedBy: {
             _type: 'PostedBy',
             _ref: userInfo?.sub,
           },
@@ -55,6 +56,8 @@ const Pin = ({ Pin }) => {
     }
   };
 
+  // console.log(alreadySaved)
+ 
   return (
     <div className="m-2">
       <div
@@ -83,7 +86,8 @@ const Pin = ({ Pin }) => {
                 ><MdDownloadForOffline />
                 </a>
               </div>
-              {alreadySaved?.length !== 0 ? (
+              {/* {alreadySaved?.length !== 0 ? ( */}
+              {alreadySaved ? (
                 <button type="button" className="px-5 py-1 text-base font-bold text-white bg-red-500 outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md">
                   {Pin?.Save?.length}  Saved
                 </button>
@@ -114,7 +118,7 @@ const Pin = ({ Pin }) => {
                 </a>
               ) : undefined}
               {
-                PostedBy?._id === userInfo?.SUB && (
+                PostedBy?._id === userInfo?.sub && (
                   <button
                     type="button"
                     onClick={(e) => {
@@ -135,7 +139,7 @@ const Pin = ({ Pin }) => {
         <img
           className="object-cover w-8 h-8 rounded-full"
           src={PostedBy?.Image}
-          alt="user-profile"
+          alt="user profile"
         />
         <p className="font-semibold capitalize">{PostedBy?.UserName}</p>
       </Link>
