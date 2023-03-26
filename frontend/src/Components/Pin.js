@@ -21,16 +21,17 @@ const Pin = ({ Pin }) => {
   const deletePin = (id) => {
     Client
       .delete(id)
-      // console.log('deleted', id)
       .then(() => {
-        window.location.reload();
+        console.log('deleted', id)
+        // window.location.reload();
       });
   };
 
   let alreadySaved = Pin?.Save?.filter((item) => item?.PostedBy?._id === userInfo?.sub);
-
+  
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
-
+  
+  // console.log(alreadySaved)
   // console.log(Image)
 
   const savePin = (id) => {
@@ -86,8 +87,7 @@ const Pin = ({ Pin }) => {
                 ><MdDownloadForOffline />
                 </a>
               </div>
-              {/* {alreadySaved?.length !== 0 ? ( */}
-              {alreadySaved ? (
+              {alreadySaved?.length !== 0 ? (
                 <button type="button" className="px-5 py-1 text-base font-bold text-white bg-red-500 outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md">
                   {Pin?.Save?.length}  Saved
                 </button>
