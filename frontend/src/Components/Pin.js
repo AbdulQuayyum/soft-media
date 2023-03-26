@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Pin = () => {
+const Pin = ({ Pin }) => {
   return (
     <div>Pin</div>
   )
