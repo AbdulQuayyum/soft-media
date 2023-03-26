@@ -74,19 +74,19 @@ export const Categories = [
 ];
 
 export const FeedQuery = `*[_type == "Pin"] | order(_createdAt desc) {
-    image{
+    Image{
       asset->{
         url
       }
     },
         _id,
-        destination,
+        Destination,
         PostedBy->{
           _id,
           UserName,
           Image
         },
-        save[]{
+        Save[]{
           _key,
           PostedBy->{
             _id,
