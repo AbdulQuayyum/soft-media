@@ -21,7 +21,11 @@ const Navbar = ({ searchTerm, setSearchTerm, User }) => {
         </div>
         <div className="flex gap-3 ">
           <Link to={`UserProfile/${User?._id}`} className="hidden md:block">
-            <img src={User.Image} alt="User Pic" className="w-14 h-12 rounded-lg " />
+            <img
+              alt="User Pic"
+              className="w-14 h-12 rounded-lg "
+              referrerPolicy="no-referrer"
+              src={User.Image} />
           </Link>
           <Link to="/CreatePin" className="bg-black text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
             <IoMdAdd />

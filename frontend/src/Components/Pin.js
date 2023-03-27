@@ -12,7 +12,7 @@ const Pin = ({ Pin }) => {
   const [savingPost, setSavingPost] = useState(false);
 
   const navigate = useNavigate();
-  
+
   const { PostedBy, Image, _id, Destination } = Pin;
   // console.log(Pin)
 
@@ -28,9 +28,9 @@ const Pin = ({ Pin }) => {
   };
 
   let alreadySaved = Pin?.Save?.filter((item) => item?.PostedBy?._id === userInfo?.sub);
-  
+
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
-  
+
   // console.log(alreadySaved)
   // console.log(Image)
 
@@ -58,7 +58,7 @@ const Pin = ({ Pin }) => {
   };
 
   // console.log(alreadySaved)
- 
+
   return (
     <div className="m-2">
       <div
@@ -68,7 +68,11 @@ const Pin = ({ Pin }) => {
         className="relative w-auto overflow-hidden transition-all duration-500 ease-in-out rounded-lg cursor-zoom-in hover:shadow-lg"
       >
         {Image && (
-          <img className="w-full rounded-lg " src={UrlFor(Image).width(250).url()} alt="user post" />
+          <img
+            alt="user post"
+            className="w-full rounded-lg "
+            referrerPolicy="no-referrer"
+            src={UrlFor(Image).width(250).url()} />
         )}
         {postHovered && (
           <div
@@ -137,10 +141,10 @@ const Pin = ({ Pin }) => {
       </div>
       <Link to={`/UserProfile/${PostedBy?._id}`} className="flex items-center gap-2 mt-2">
         <img
-          className="object-cover w-8 h-8 rounded-full"
-          src={PostedBy?.Image}
           alt="user profile"
-        />
+          className="object-cover w-8 h-8 rounded-full"
+          referrerPolicy="no-referrer"
+          src={PostedBy?.Image} />
         <p className="font-semibold capitalize">{PostedBy?.UserName}</p>
       </Link>
     </div>

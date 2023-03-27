@@ -10,8 +10,8 @@ import Spinner from './Spinner';
 
 const PinDetail = ({ User }) => {
   const { PinID } = useParams();
-  const [pins, setPins] = useState();
-  const [pinDetail, setPinDetail] = useState();
+  const [pins, setPins] = useState(null);
+  const [pinDetail, setPinDetail] = useState(null);
   const [comment, setComment] = useState('');
   const [addingComment, setAddingComment] = useState(false);
 
@@ -20,10 +20,10 @@ const PinDetail = ({ User }) => {
     // console.log(query);
 
     if (query) {
-      Client.fetch(`${query}`)
+      Client.fetch(query)
         .then((data) => {
           setPinDetail(data[0]);
-          console.log(data);
+          // console.log(data);
           if (data[0]) {
             const query1 = PinDetailMorePinQuery(data[0]);
             Client.fetch(query1)
@@ -68,10 +68,10 @@ const PinDetail = ({ User }) => {
         <div className="flex xl:flex-row flex-col m-auto bg-white" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
           <div className="flex justify-center items-center md:items-start flex-initial">
             <img
-              className="rounded-t-3xl rounded-b-lg"
-              src={(pinDetail?.Image && UrlFor(pinDetail?.Image).url())}
               alt="user-post"
-            />
+              className="rounded-t-3xl rounded-b-lg"
+              referrerPolicy="no-referrer"
+              src={(pinDetail?.Image && UrlFor(pinDetail?.Image).url())} />
           </div>
           <div className="w-full p-5 flex-1 xl:min-w-620">
             <div className="flex items-center justify-between">
@@ -95,7 +95,11 @@ const PinDetail = ({ User }) => {
               <p className="mt-3">{pinDetail.About}</p>
             </div>
             <Link to={`/UserProfile/${pinDetail?.PostedBy._id}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
-              <img src={pinDetail?.PostedBy.Image} className="w-10 h-10 rounded-full" alt="user profile" />
+              <img
+                alt="user profile"
+                className="w-10 h-10 rounded-full"
+                referrerPolicy="no-referrer"
+                src={pinDetail?.PostedBy.Image} />
               <p className="font-bold">{pinDetail?.PostedBy.UserName}</p>
             </Link>
             <h2 className="mt-5 text-2xl">Comments</h2>
@@ -103,10 +107,10 @@ const PinDetail = ({ User }) => {
               {pinDetail?.Comments?.map((item) => (
                 <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={item.Comment}>
                   <img
-                    src={item.PostedBy?.Image}
-                    className="w-10 h-10 rounded-full cursor-pointer"
                     alt="user-profile"
-                  />
+                    className="w-10 h-10 rounded-full cursor-pointer"
+                    referrerPolicy="no-referrer"
+                    src={item.PostedBy?.Image} />
                   <div className="flex flex-col">
                     <p className="font-bold">{item.PostedBy?.UserName}</p>
                     <p>{item.Comment}</p>
@@ -116,7 +120,11 @@ const PinDetail = ({ User }) => {
             </div>
             <div className="flex flex-wrap mt-6 gap-3">
               <Link to={`/UserProfile/${User._id}`}>
-                <img src={User.Image} className="w-10 h-10 rounded-full cursor-pointer" alt="user profile" />
+                <img
+                  alt="user profile"
+                  className="w-10 h-10 rounded-full cursor-pointer"
+                  referrerPolicy="no-referrer"
+                  src={User.Image} />
               </Link>
               <input
                 className=" flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"

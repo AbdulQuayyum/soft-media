@@ -8,12 +8,12 @@ import { MasonryLayout, Spinner } from "./Index"
 const Feed = () => {
   const [pins, setPins] = useState();
   const [loading, setLoading] = useState(false);
-  const { CategoryId } = useParams();
+  const { CategoryID } = useParams();
 
   useEffect(() => {
-    if (CategoryId) {
+    if (CategoryID) {
       setLoading(true);
-      const query = SearchQuery(CategoryId);
+      const query = SearchQuery(CategoryID);
       Client.fetch(query)
         .then((data) => {
           setPins(data);
@@ -28,9 +28,9 @@ const Feed = () => {
           setLoading(false);
         });
     }
-  }, [CategoryId]);
+  }, [CategoryID]);
 
-  const IdeaName = CategoryId || 'new';
+  const IdeaName = CategoryID || 'new';
   if (loading) {
     return (
       <Spinner message={`We are adding ${IdeaName} ideas to your feed!`} />

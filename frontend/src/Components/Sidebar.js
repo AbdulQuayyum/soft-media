@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
+import { googleLogout } from '@react-oauth/google';
 import { Categories } from "../Utilities/Data"
 import { Logo } from "../Assets/Index"
 
@@ -34,14 +35,18 @@ const Sidebar = ({ closeToggle, User }) => {
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
-          {Categories.slice(0, Categories.length ).map((Category) => (
+          {Categories.slice(0, Categories.length).map((Category) => (
             <NavLink
               to={`/Category/${Category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
               onClick={handleCloseSidebar}
               key={Category.name}
             >
-              <img src={Category.image} alt="..." className="w-8 h-8 rounded-full shadow-sm" />
+              <img
+                alt="..."
+                className="w-8 h-8 rounded-full shadow-sm"
+                referrerPolicy="no-referrer"
+                src={Category.image} />
               {Category.name}
             </NavLink>
           ))}
@@ -53,7 +58,11 @@ const Sidebar = ({ closeToggle, User }) => {
           className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
           onClick={handleCloseSidebar}
         >
-          <img src={User?.Image} className="w-10 h-10 rounded-full" alt="User profile" />
+          <img
+            alt="User profile"
+            className="w-10 h-10 rounded-full"
+            referrerPolicy="no-referrer"
+            src={User?.Image} />
           <p>{User.UserName}</p>
           <IoIosArrowForward />
         </Link>
