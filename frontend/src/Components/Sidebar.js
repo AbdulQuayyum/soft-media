@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { RiHomeFill } from 'react-icons/ri';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { RxDashboard } from 'react-icons/rx';
+import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 import { googleLogout } from '@react-oauth/google';
 import { Categories } from "../Utilities/Data"
@@ -10,9 +11,24 @@ const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-
 const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize';
 
 const Sidebar = ({ closeToggle, User }) => {
+  const navigate = useNavigate()
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  )
+
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
   };
+
+  const handleLogout = () => {
+    googleLogout()
+    localStorage.clear()
+    async function Logout() {
+      await delay(3000)
+      navigate("/Login")
+    }
+    Logout()
+  }
 
   return (
     <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar">
@@ -31,7 +47,7 @@ const Sidebar = ({ closeToggle, User }) => {
             className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
             onClick={handleCloseSidebar}
           >
-            <RiHomeFill />
+            <RxDashboard />
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
@@ -50,6 +66,12 @@ const Sidebar = ({ closeToggle, User }) => {
               {Category.name}
             </NavLink>
           ))}
+          <button
+            className='flex items-center pt-3 px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize text-lg border-t-2'
+            onClick={handleLogout} >
+            Logout
+            < RiLogoutCircleRLine />
+          </button>
         </div>
       </div>
       {User && (

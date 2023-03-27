@@ -45,6 +45,10 @@ const Login = () => {
             <GoogleLogin
               onSuccess={response => { CreateOrGetUser(response) }}
               onError={() => { console.log('Login Failed') }}
+              shape="circle"
+              size='large'
+              text="continue_with"
+              theme="filled_black"
             />
           </div>
         </div>

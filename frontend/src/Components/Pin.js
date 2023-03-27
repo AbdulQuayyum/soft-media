@@ -92,7 +92,7 @@ const Pin = ({ Pin }) => {
                 </a>
               </div>
               {alreadySaved?.length !== 0 ? (
-                <button type="button" className="px-5 py-1 text-base font-bold text-white bg-red-500 outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md">
+                <button type="button" className="px-5 py-1 text-base font-bold text-white bg-[#000] outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md">
                   {Pin?.Save?.length}  Saved
                 </button>
               ) : (
@@ -102,7 +102,7 @@ const Pin = ({ Pin }) => {
                     savePin(_id);
                   }}
                   type="button"
-                  className="px-5 py-1 text-base font-bold text-white bg-red-500 outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md"
+                  className="px-5 py-1 text-base font-bold text-white bg-[#000] outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md"
                 >
                   {Pin?.Save?.length}   {savingPost ? 'Saving' : 'Save'}
                 </button>

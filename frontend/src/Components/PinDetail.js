@@ -12,8 +12,12 @@ const PinDetail = ({ User }) => {
   const { PinID } = useParams();
   const [pins, setPins] = useState(null);
   const [pinDetail, setPinDetail] = useState(null);
-  const [comment, setComment] = useState('');
+  const [Comment, setComment] = useState('');
   const [addingComment, setAddingComment] = useState(false);
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  )
 
   const fetchPinDetails = () => {
     const query = PinDetailQuery(PinID);
@@ -40,21 +44,28 @@ const PinDetail = ({ User }) => {
   }, [PinID]);
 
   const addComment = () => {
-    if (comment) {
+    if (Comment) {
       setAddingComment(true);
 
       Client
         .patch(PinID)
         .setIfMissing({ Comments: [] })
-        .insert('after', 'comments[-1]', [{ Comment, _key: uuidv4(), PostedBy: { _type: 'PostedBy', _ref: User._id } }])
+        .insert('after', 'Comments[-1]', [{ Comment, _key: uuidv4(), PostedBy: { _type: 'PostedBy', _ref: User._id } }])
         .commit()
         .then(() => {
           fetchPinDetails();
           setComment('');
           setAddingComment(false);
+          async function reload() {
+            await delay(2000)
+            window.location.reload()
+          }
+          reload()
         });
     }
   };
+
+  // console.log(pinDetail)
 
   if (!pinDetail) {
     return (
@@ -129,16 +140,16 @@ const PinDetail = ({ User }) => {
               <input
                 className=" flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"
                 type="text"
-                placeholder="Add a comment"
-                value={comment}
+                placeholder="Add a Comment"
+                value={Comment}
                 onChange={(e) => setComment(e.target.value)}
               />
               <button
                 type="button"
-                className="bg-red-500 text-white rounded-full px-6 py-2 font-semibold text-base outline-none"
+                className="bg-[#000] text-white rounded-full px-6 py-2 font-semibold text-base outline-none"
                 onClick={addComment}
               >
-                {addingComment ? 'Doing...' : 'Done'}
+                {addingComment ? 'Commenting...' : 'Comment'}
               </button>
             </div>
           </div>
