@@ -96,8 +96,8 @@ export const FeedQuery = `*[_type == "Pin"] | order(_createdAt desc) {
         },
       } `;
 
-export const PinDetailQuery = (PinId) => {
-  const query = `*[_type == "Pin" && _id == '${PinId}']{
+export const PinDetailQuery = (PinID) => {
+  const query = `*[_type == "Pin" && _id == '${PinID}']{
       Image{
         asset->{
           url
@@ -134,7 +134,7 @@ export const PinDetailQuery = (PinId) => {
 };
 
 export const PinDetailMorePinQuery = (Pin) => {
-  const query = `*[_type == "Pin" && category == '${Pin.category}' && _id != '${Pin._id}' ]{
+  const query = `*[_type == "Pin" && category == '${Pin.Category}' && _id != '${Pin._id}' ]{
       Image{
         asset->{
           url
