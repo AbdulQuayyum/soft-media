@@ -134,7 +134,7 @@ export const PinDetailQuery = (PinID) => {
 };
 
 export const PinDetailMorePinQuery = (Pin) => {
-  const query = `*[_type == "Pin" && category == '${Pin.Category}' && _id != '${Pin._id}' ]{
+  const query = `*[_type == "Pin" && Category == '${Pin.Category}' && _id != '${Pin._id}' ]{
       Image{
         asset->{
           url

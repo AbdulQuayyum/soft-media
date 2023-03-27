@@ -17,7 +17,7 @@ const PinDetail = ({ User }) => {
 
   const fetchPinDetails = () => {
     const query = PinDetailQuery(PinID);
-    console.log(query);
+    // console.log(query);
 
     if (query) {
       Client.fetch(`${query}`)
@@ -26,9 +26,10 @@ const PinDetail = ({ User }) => {
           console.log(data);
           if (data[0]) {
             const query1 = PinDetailMorePinQuery(data[0]);
-            Client.fetch(query1).then((res) => {
-              setPins(res);
-            });
+            Client.fetch(query1)
+              .then((res) => {
+                setPins(res);
+              });
           }
         });
     }
