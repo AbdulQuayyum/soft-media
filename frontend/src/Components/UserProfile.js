@@ -12,7 +12,15 @@ const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 o
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
 
 const UserProfile = () => {
+  const [user, setUser] = useState();
+  const [pins, setPins] = useState();
+  const [text, setText] = useState('Created');
+  const [activeBtn, setActiveBtn] = useState('created');
   const navigate = useNavigate()
+  const { UserID } = useParams()
+
+  const userInfo = localStorage.getItem('User') !== 'undefined' ? JSON.parse(localStorage.getItem('User')) : localStorage.clear();
+
   const delay = ms => new Promise(
     resolve => setTimeout(resolve, ms)
   )
