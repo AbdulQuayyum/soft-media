@@ -69,7 +69,7 @@ const PostDetail = ({ User }) => {
 
   if (!PostDetail) {
     return (
-      <Spinner message="Showing pin" />
+      <Spinner message="Showing post" />
     );
   }
 

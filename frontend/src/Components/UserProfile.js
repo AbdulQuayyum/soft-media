@@ -74,7 +74,7 @@ const UserProfile = () => {
             <img
               className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
               src={user.Image}
-              alt="user-pic"
+              alt="user pic"
             />
           </div>
           <h1 className="font-bold text-3xl text-center mt-3">
@@ -82,21 +82,6 @@ const UserProfile = () => {
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
             {UserID === userInfo.sub && (
-              // <GoogleLogout
-              //   clientId={`${process.env.REACT_APP_GOOGLE_API_TOKEN}`}
-              //   render={(renderProps) => (
-              //     <button
-              //       type="button"
-              //       className=" bg-white p-2 rounded-full cursor-pointer outline-none shadow-md"
-              //       onClick={renderProps.onClick}
-              //       disabled={renderProps.disabled}
-              //     >
-              //       <AiOutlineLogout color="red" fontSize={21} />
-              //     </button>
-              //   )}
-              //   onLogoutSuccess={logout}
-              //   cookiePolicy="single_host_origin"
-              // />  
               <button
                 className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
                 onClick={handleLogout} >

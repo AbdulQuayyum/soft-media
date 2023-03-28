@@ -17,6 +17,10 @@ const Feed = () => {
       Client.fetch(query)
         .then((data) => {
           setPosts(data);
+          // console.log(Client)
+          // console.log(query);
+          // console.log(CategoryID);
+          // console.log(data);
           setLoading(false);
         });
     } else {
@@ -29,6 +33,7 @@ const Feed = () => {
         });
     }
   }, [CategoryID]);
+  // console.log(CategoryID)
 
   const IdeaName = CategoryID || 'new';
   if (loading) {

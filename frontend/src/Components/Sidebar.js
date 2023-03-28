@@ -38,7 +38,7 @@ const Sidebar = ({ closeToggle, User }) => {
           className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
           onClick={handleCloseSidebar}
         >
-          <img src={Logo} alt="logo" className="w-16 h-auto" />
+          <img src={Logo} alt="logo" className="w-12 h-auto" />
         </Link>
         <div className="flex flex-col gap-5">
 
