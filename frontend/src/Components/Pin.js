@@ -12,6 +12,9 @@ const Pin = ({ Pin }) => {
   const [savingPost, setSavingPost] = useState(false);
 
   const navigate = useNavigate();
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  )
 
   const { PostedBy, Image, _id, Destination } = Pin;
   // console.log(Pin)
@@ -23,7 +26,11 @@ const Pin = ({ Pin }) => {
       .delete(id)
       .then(() => {
         console.log('deleted', id)
-        // window.location.reload();
+        async function reload() {
+          await delay(3000)
+          window.location.reload()
+        }
+        reload()
       });
   };
 
@@ -51,7 +58,11 @@ const Pin = ({ Pin }) => {
         }])
         .commit()
         .then(() => {
-          window.location.reload();
+          async function reload() {
+            await delay(3000)
+            window.location.reload()
+          }
+          reload()
           setSavingPost(false);
         });
     }

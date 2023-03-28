@@ -8,14 +8,14 @@ import { Client } from '../Utilities/Client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
 
-const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none';
+const activeBtnStyles = 'bg-black text-white font-bold p-2 rounded-full w-20 outline-none';
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
 
 const UserProfile = () => {
   const [user, setUser] = useState();
   const [pins, setPins] = useState();
   const [text, setText] = useState('Created');
-  const [activeBtn, setActiveBtn] = useState('created');
+  const [activeBtn, setActiveBtn] = useState('Created');
   const navigate = useNavigate()
   const { UserID } = useParams()
 
@@ -26,7 +26,7 @@ const UserProfile = () => {
     Client.fetch(query)
       .then((data) => {
         setUser(data[0]);
-      });
+      }); 
   }, [UserID]);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const UserProfile = () => {
           <div className="flex flex-col justify-center items-center">
             <img
               className=" w-full h-370 2xl:h-510 shadow-lg object-cover"
-              src="https://source.unsplash.com/1600x900/?nature,photography,technology"
+              src="https://source.unsplash.com/1600x900/?nature,photography,cats,moon"
               alt="user-pic"
             />
             <img
@@ -78,7 +78,7 @@ const UserProfile = () => {
             />
           </div>
           <h1 className="font-bold text-3xl text-center mt-3">
-            {user.userName}
+            {user.UserName}
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
             {UserID === userInfo.sub && (
@@ -100,8 +100,7 @@ const UserProfile = () => {
               <button
                 className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
                 onClick={handleLogout} >
-                Logout
-                < RiLogoutCircleRLine color="red" fontSize={21} />
+                < RiLogoutCircleRLine color="black" fontSize={21} />
               </button>
             )}
           </div>
@@ -111,9 +110,9 @@ const UserProfile = () => {
             type="button"
             onClick={(e) => {
               setText(e.target.textContent);
-              setActiveBtn('created');
+              setActiveBtn('Created');
             }}
-            className={`${activeBtn === 'created' ? activeBtnStyles : notActiveBtnStyles}`}
+            className={`${activeBtn === 'Created' ? activeBtnStyles : notActiveBtnStyles}`}
           >
             Created
           </button>
@@ -128,20 +127,16 @@ const UserProfile = () => {
             Saved
           </button>
         </div>
-
         <div className="px-2">
-          <MasonryLayout pins={pins} />
+          <MasonryLayout Pins={pins} />
         </div>
-
         {pins?.length === 0 && (
           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
             No Pins Found!
           </div>
         )}
       </div>
-
     </div>
   )
 }
-
 export default UserProfile

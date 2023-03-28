@@ -57,7 +57,7 @@ const PinDetail = ({ User }) => {
           setComment('');
           setAddingComment(false);
           async function reload() {
-            await delay(2000)
+            await delay(3000)
             window.location.reload()
           }
           reload()

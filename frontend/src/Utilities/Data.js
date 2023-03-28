@@ -8,12 +8,24 @@ export const Categories = [
     image: 'https://i.pinimg.com/564x/c0/a0/41/c0a04189340525f801144de0212f3257.jpg',
   },
   {
+    name: 'music',
+    image: 'https://i.pinimg.com/474x/63/7c/34/637c34b161f21a494aabbd127feacfce.jpg',
+  },
+  {
     name: 'food',
     image: 'https://i.pinimg.com/564x/96/5f/8b/965f8b701b711caba397e6a0bc559254.jpg',
   },
   {
     name: 'cars',
     image: 'https://i.pinimg.com/750x/eb/47/44/eb4744eaa3b3ccd89749fa3470e2b0de.jpg',
+  },
+  {
+    name: 'cinematography',
+    image: 'https://i.pinimg.com/474x/ee/0e/5e/ee0e5e4ca46078a6fe8a12efbaaee3b1.jpg',
+  },
+  {
+    name: 'video games',
+    image: 'https://i.pinimg.com/474x/de/24/57/de24578fe63da09a52e6878d594c35e7.jpg',
   },
   {
     name: 'ducks',
