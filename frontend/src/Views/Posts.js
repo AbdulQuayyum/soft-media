@@ -14,7 +14,7 @@ const Posts = ({ User }) => {
                 <Routes>
                     <Route path="/" element={<Feed />} />
                     <Route path="/Category/:CategoryID" element={<Feed />} />
-                    <Route path="/PostDetail/:PinID" element={<PostDetail User={User && User} />} />
+                    <Route path="/PostDetail/:PostID" element={<PostDetail User={User && User} />} />
                     <Route path="/CreatePost" element={<CreatePost User={User && User} />} />
                     <Route path="/Search" element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
                 </Routes>

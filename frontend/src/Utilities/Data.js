@@ -107,8 +107,8 @@ export const FeedQuery = `*[_type == "Post"] | order(_createdAt desc) {
         },
       } `;
 
-export const PostDetailQuery = (PinID) => {
-  const query = `*[_type == "Post" && _id == '${PinID}']{
+export const PostDetailQuery = (PostID) => {
+  const query = `*[_type == "Post" && _id == '${PostID}']{
       Image{
         asset->{
           url
@@ -143,7 +143,7 @@ export const PostDetailQuery = (PinID) => {
   return query;
 };
 
-export const PostDetailMorePinQuery = (Post) => {
+export const PostDetailMorePostQuery = (Post) => {
   const query = `*[_type == "Post" && Category == '${Post.Category}' && _id != '${Post._id}' ]{
       Image{
         asset->{

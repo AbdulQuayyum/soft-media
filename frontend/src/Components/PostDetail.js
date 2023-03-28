@@ -4,12 +4,12 @@ import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Client, UrlFor } from '../Utilities/Client';
-import { PostDetailMorePinQuery, PostDetailQuery } from '../Utilities/Data';
+import { PostDetailMorePostQuery, PostDetailQuery } from '../Utilities/Data';
 import MasonryLayout from "./MasonryLayout"
 import Spinner from './Spinner';
 
 const PostDetail = ({ User }) => {
-  const { PinID } = useParams();
+  const { PostID } = useParams();
   const [Posts, setPosts] = useState(null);
   const [PostDetail, setPostDetail] = useState(null);
   const [Comment, setComment] = useState('');
@@ -20,7 +20,7 @@ const PostDetail = ({ User }) => {
   )
 
   const fetchPostDetails = () => {
-    const query = PostDetailQuery(PinID);
+    const query = PostDetailQuery(PostID);
     // console.log(query);
 
     if (query) {
@@ -29,7 +29,7 @@ const PostDetail = ({ User }) => {
           setPostDetail(data[0]);
           // console.log(data);
           if (data[0]) {
-            const query1 = PostDetailMorePinQuery(data[0]);
+            const query1 = PostDetailMorePostQuery(data[0]);
             Client.fetch(query1)
               .then((res) => {
                 setPosts(res);
@@ -41,14 +41,14 @@ const PostDetail = ({ User }) => {
 
   useEffect(() => {
     fetchPostDetails();
-  }, [PinID]);
+  }, [PostID]);
 
   const addComment = () => {
     if (Comment) {
       setAddingComment(true);
 
       Client
-        .patch(PinID)
+        .patch(PostID)
         .setIfMissing({ Comments: [] })
         .insert('after', 'Comments[-1]', [{ Comment, _key: uuidv4(), PostedBy: { _type: 'PostedBy', _ref: User._id } }])
         .commit()

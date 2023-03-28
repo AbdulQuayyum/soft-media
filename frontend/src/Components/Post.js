@@ -21,7 +21,7 @@ const Post = ({ Post }) => {
 
   const userInfo = localStorage.getItem('User') !== 'undefined' ? JSON.parse(localStorage.getItem('User')) : localStorage.clear();
 
-  const deletePin = (id) => {
+  const deletePost = (id) => {
     Client
       .delete(id)
       .then(() => {
@@ -41,7 +41,7 @@ const Post = ({ Post }) => {
   // console.log(alreadySaved)
   // console.log(Image)
 
-  const savePin = (id) => {
+  const savePost = (id) => {
     if (alreadySaved?.length === 0) {
       setSavingPost(true);
 
@@ -110,7 +110,7 @@ const Post = ({ Post }) => {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    savePin(_id);
+                    savePost(_id);
                   }}
                   type="button"
                   className="px-5 py-1 text-base font-bold text-white bg-[#000] outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md"
@@ -126,7 +126,7 @@ const Post = ({ Post }) => {
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      deletePin(_id);
+                      deletePost(_id);
                     }}
                     className="flex items-center justify-center w-8 h-8 p-2 bg-white rounded-full outline-none opacity-75 text-dark hover:opacity-100"
                   >
