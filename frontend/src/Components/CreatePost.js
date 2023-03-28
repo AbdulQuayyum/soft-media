@@ -8,16 +8,19 @@ import { Categories } from '../Utilities/Data';
 import { Client } from '../Utilities/Client';
 import Spinner from "./Spinner"
 
-const CreatePin = ({ User }) => {
+const CreatePost = ({ User }) => {
   const [Title, setTitle] = useState('');
   const [About, setAbout] = useState('');
   const [loading, setLoading] = useState(false);
-  const [Destination, setDestination] = useState();
   const [fields, setFields] = useState();
   const [Category, setCategory] = useState();
   const [imageAsset, setImageAsset] = useState();
   const [wrongImageType, setWrongImageType] = useState(false);
+  const [creatingPost, setCreatingPost] = useState(false);
   const navigate = useNavigate();
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  )
 
   const customStyles = {
     control: (provided) => ({
@@ -52,13 +55,13 @@ const CreatePin = ({ User }) => {
     }
   };
 
-  const savePin = () => {
-    if (Title && About && Destination && imageAsset?._id && Category) {
+  const savePost = () => {
+    setCreatingPost(true);
+    if (Title && About && imageAsset?._id && Category) {
       const doc = {
-        _type: 'Pin',
+        _type: 'Post',
         Title,
         About,
-        Destination,
         Image: {
           _type: 'Image',
           asset: {
@@ -73,9 +76,15 @@ const CreatePin = ({ User }) => {
         },
         Category,
       };
-      Client.create(doc).then(() => {
-        navigate('/');
-      });
+      Client.create(doc)
+        .then(() => {
+          setCreatingPost(false)
+          async function reload() {
+            await delay(1000)
+            navigate('/');
+          }
+          reload()
+        });
     } else {
       setFields(true);
 
@@ -167,20 +176,12 @@ const CreatePin = ({ User }) => {
             type="text"
             value={About}
             onChange={(e) => setAbout(e.target.value)}
-            placeholder="Tell everyone what your Pin is About"
+            placeholder="Tell everyone what your Post is About"
             className="outline-none text-base border-b-2 border-gray-200 p-2"
           />
-          <input
-            type="url"
-            vlaue={Destination}
-            onChange={(e) => setDestination(e.target.value)}
-            placeholder="Add a Destination link"
-            className="outline-none text-base border-b-2 border-gray-200 p-2"
-          />
-
           <div className="flex flex-col">
             <div>
-              <p className="mb-2 font-semibold text:base sm:text-lg">Choose Pin Category</p>
+              <p className="mb-2 font-semibold text:base sm:text-lg">Choose Image Category</p>
               <Select
                 className='py-2'
                 styles={customStyles}
@@ -195,10 +196,10 @@ const CreatePin = ({ User }) => {
             <div className="flex justify-end items-end mt-5">
               <button
                 type="button"
-                onClick={savePin}
+                onClick={savePost}
                 className="bg-[#000] text-white font-bold p-2 rounded-full w-28 outline-none"
               >
-                Save Pin
+                {creatingPost ? "Creating..." : "Create"}
               </button>
             </div>
           </div>
@@ -208,4 +209,4 @@ const CreatePin = ({ User }) => {
   )
 }
 
-export default CreatePin
+export default CreatePost

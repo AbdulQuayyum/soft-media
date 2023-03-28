@@ -1,5 +1,5 @@
 import Home from "./Home";
 import Login from "./Login";
-import Pins from "./Pins";
+import Posts from "./Posts";
 
-export { Home, Login, Pins }
+export { Home, Login, Posts }

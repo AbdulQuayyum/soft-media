@@ -4,14 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Client, UrlFor } from '../Utilities/Client';
-import { PinDetailMorePinQuery, PinDetailQuery } from '../Utilities/Data';
+import { PostDetailMorePinQuery, PostDetailQuery } from '../Utilities/Data';
 import MasonryLayout from "./MasonryLayout"
 import Spinner from './Spinner';
 
-const PinDetail = ({ User }) => {
+const PostDetail = ({ User }) => {
   const { PinID } = useParams();
-  const [pins, setPins] = useState(null);
-  const [pinDetail, setPinDetail] = useState(null);
+  const [Posts, setPosts] = useState(null);
+  const [PostDetail, setPostDetail] = useState(null);
   const [Comment, setComment] = useState('');
   const [addingComment, setAddingComment] = useState(false);
 
@@ -19,20 +19,20 @@ const PinDetail = ({ User }) => {
     resolve => setTimeout(resolve, ms)
   )
 
-  const fetchPinDetails = () => {
-    const query = PinDetailQuery(PinID);
+  const fetchPostDetails = () => {
+    const query = PostDetailQuery(PinID);
     // console.log(query);
 
     if (query) {
       Client.fetch(query)
         .then((data) => {
-          setPinDetail(data[0]);
+          setPostDetail(data[0]);
           // console.log(data);
           if (data[0]) {
-            const query1 = PinDetailMorePinQuery(data[0]);
+            const query1 = PostDetailMorePinQuery(data[0]);
             Client.fetch(query1)
               .then((res) => {
-                setPins(res);
+                setPosts(res);
               });
           }
         });
@@ -40,7 +40,7 @@ const PinDetail = ({ User }) => {
   };
 
   useEffect(() => {
-    fetchPinDetails();
+    fetchPostDetails();
   }, [PinID]);
 
   const addComment = () => {
@@ -53,7 +53,7 @@ const PinDetail = ({ User }) => {
         .insert('after', 'Comments[-1]', [{ Comment, _key: uuidv4(), PostedBy: { _type: 'PostedBy', _ref: User._id } }])
         .commit()
         .then(() => {
-          fetchPinDetails();
+          fetchPostDetails();
           setComment('');
           setAddingComment(false);
           async function reload() {
@@ -65,9 +65,9 @@ const PinDetail = ({ User }) => {
     }
   };
 
-  // console.log(pinDetail)
+  // console.log(PostDetail)
 
-  if (!pinDetail) {
+  if (!PostDetail) {
     return (
       <Spinner message="Showing pin" />
     );
@@ -75,47 +75,44 @@ const PinDetail = ({ User }) => {
 
   return (
     <>
-      {pinDetail && (
+      {PostDetail && (
         <div className="flex xl:flex-row flex-col m-auto bg-white" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
           <div className="flex justify-center items-center md:items-start flex-initial">
             <img
               alt="user-post"
               className="rounded-t-3xl rounded-b-lg"
               referrerPolicy="no-referrer"
-              src={(pinDetail?.Image && UrlFor(pinDetail?.Image).url())} />
+              src={(PostDetail?.Image && UrlFor(PostDetail?.Image).url())} />
           </div>
           <div className="w-full p-5 flex-1 xl:min-w-620">
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
                 <a
-                  href={`${pinDetail.Image.asset.url}?dl=`}
+                  href={`${PostDetail.Image.asset.url}?dl=`}
                   download
                   className="bg-secondaryColor p-2 text-xl rounded-full flex items-center justify-center text-dark opacity-75 hover:opacity-100"
                 >
                   <MdDownloadForOffline />
                 </a>
               </div>
-              <a href={pinDetail.Destination} target="_blank" rel="noreferrer">
-                {pinDetail.Destination?.slice(8)}
-              </a>
             </div>
             <div>
               <h1 className="text-4xl font-bold break-words mt-3">
-                {pinDetail.Title}
+                {PostDetail.Title}
               </h1>
-              <p className="mt-3">{pinDetail.About}</p>
+              <p className="mt-3">{PostDetail.About}</p>
             </div>
-            <Link to={`/UserProfile/${pinDetail?.PostedBy._id}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
+            <Link to={`/UserProfile/${PostDetail?.PostedBy._id}`} className="flex gap-2 mt-5 items-center bg-white rounded-lg ">
               <img
                 alt="user profile"
                 className="w-10 h-10 rounded-full"
                 referrerPolicy="no-referrer"
-                src={pinDetail?.PostedBy.Image} />
-              <p className="font-bold">{pinDetail?.PostedBy.UserName}</p>
+                src={PostDetail?.PostedBy.Image} />
+              <p className="font-bold">{PostDetail?.PostedBy.UserName}</p>
             </Link>
             <h2 className="mt-5 text-2xl">Comments</h2>
             <div className="max-h-370 overflow-y-auto">
-              {pinDetail?.Comments?.map((item) => (
+              {PostDetail?.Comments?.map((item) => (
                 <div className="flex gap-2 mt-5 items-center bg-white rounded-lg" key={item.Comment}>
                   <img
                     alt="user-profile"
@@ -155,19 +152,19 @@ const PinDetail = ({ User }) => {
           </div>
         </div>
       )}
-      {console.log(pins)}
-      {pins?.length > 0 && (
+      {/* {console.log(Posts)} */}
+      {Posts?.length > 0 && (
         <h2 className="text-center font-bold text-2xl mt-8 mb-4">
           More like this
         </h2>
       )}
-      {pins ? (
-        <MasonryLayout Pins={pins} />
+      {Posts ? (
+        <MasonryLayout Posts={Posts} />
       ) : (
-        <Spinner message="Loading more pins" />
+        <Spinner message="Loading more Posts" />
       )}
     </>
   )
 }
 
-export default PinDetail
+export default PostDetail

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { CreatePin, Feed, Navbar, PinDetail, Search } from "../Components/Index"
+import { CreatePost, Feed, Navbar, PostDetail, Search } from "../Components/Index"
 
-const Pins = ({ User }) => {
+const Posts = ({ User }) => {
     const [searchTerm, setSearchTerm] = useState('');
     return (
         <div className="px-2 md:px-5">
@@ -14,8 +14,8 @@ const Pins = ({ User }) => {
                 <Routes>
                     <Route path="/" element={<Feed />} />
                     <Route path="/Category/:CategoryID" element={<Feed />} />
-                    <Route path="/PinDetail/:PinID" element={<PinDetail User={User && User} />} />
-                    <Route path="/CreatePin" element={<CreatePin User={User && User} />} />
+                    <Route path="/PostDetail/:PinID" element={<PostDetail User={User && User} />} />
+                    <Route path="/CreatePost" element={<CreatePost User={User && User} />} />
                     <Route path="/Search" element={<Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />} />
                 </Routes>
             </div>
@@ -23,4 +23,4 @@ const Pins = ({ User }) => {
     )
 }
 
-export default Pins
+export default Posts

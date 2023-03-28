@@ -6,7 +6,7 @@ import { FeedQuery, SearchQuery } from "../Utilities/Data"
 import { MasonryLayout, Spinner } from "./Index"
 
 const Feed = () => {
-  const [pins, setPins] = useState();
+  const [Posts, setPosts] = useState();
   const [loading, setLoading] = useState(false);
   const { CategoryID } = useParams();
 
@@ -16,7 +16,7 @@ const Feed = () => {
       const query = SearchQuery(CategoryID);
       Client.fetch(query)
         .then((data) => {
-          setPins(data);
+          setPosts(data);
           setLoading(false);
         });
     } else {
@@ -24,7 +24,7 @@ const Feed = () => {
 
       Client.fetch(FeedQuery)
         .then((data) => {
-          setPins(data);
+          setPosts(data);
           setLoading(false);
         });
     }
@@ -39,8 +39,8 @@ const Feed = () => {
 
   return (
     <div>
-      {pins && (
-        <MasonryLayout Pins={pins} />
+      {Posts && (
+        <MasonryLayout Posts={Posts} />
       )}
     </div>
   )

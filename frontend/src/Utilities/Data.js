@@ -85,14 +85,13 @@ export const Categories = [
   }
 ];
 
-export const FeedQuery = `*[_type == "Pin"] | order(_createdAt desc) {
+export const FeedQuery = `*[_type == "Post"] | order(_createdAt desc) {
     Image{
       asset->{
         url
       }
     },
         _id,
-        Destination,
         PostedBy->{
           _id,
           UserName,
@@ -108,8 +107,8 @@ export const FeedQuery = `*[_type == "Pin"] | order(_createdAt desc) {
         },
       } `;
 
-export const PinDetailQuery = (PinID) => {
-  const query = `*[_type == "Pin" && _id == '${PinID}']{
+export const PostDetailQuery = (PinID) => {
+  const query = `*[_type == "Post" && _id == '${PinID}']{
       Image{
         asset->{
           url
@@ -119,7 +118,6 @@ export const PinDetailQuery = (PinID) => {
       Title, 
       About,
       Category,
-      Destination,
       PostedBy->{
         _id,
         UserName,
@@ -145,15 +143,14 @@ export const PinDetailQuery = (PinID) => {
   return query;
 };
 
-export const PinDetailMorePinQuery = (Pin) => {
-  const query = `*[_type == "Pin" && Category == '${Pin.Category}' && _id != '${Pin._id}' ]{
+export const PostDetailMorePinQuery = (Post) => {
+  const query = `*[_type == "Post" && Category == '${Post.Category}' && _id != '${Post._id}' ]{
       Image{
         asset->{
           url
         }
       },
       _id,
-      Destination,
       PostedBy->{
         _id,
         UserName,
@@ -172,14 +169,13 @@ export const PinDetailMorePinQuery = (Pin) => {
 };
 
 export const SearchQuery = (searchTerm) => {
-  const query = `*[_type == "Pin" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
+  const query = `*[_type == "Post" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
           Image{
             asset->{
               url
             }
           },
               _id,
-              Destination,
               PostedBy->{
                 _id,
                 UserName,
@@ -202,15 +198,14 @@ export const UserQuery = (UserID) => {
   return query;
 };
 
-export const UserCreatedPinsQuery = (UserID) => {
-  const query = `*[ _type == 'Pin' && UserID == '${UserID}'] | order(_createdAt desc){
+export const UserCreatedPostsQuery = (UserID) => {
+  const query = `*[ _type == 'Post' && UserID == '${UserID}'] | order(_createdAt desc){
       Image{
         asset->{
           url
         }
       },
       _id,
-      Destination,
       PostedBy->{
         _id,
         UserName,
@@ -227,15 +222,14 @@ export const UserCreatedPinsQuery = (UserID) => {
   return query;
 };
 
-export const UserSavedPinsQuery = (UserID) => {
-  const query = `*[_type == 'Pin' && '${UserID}' in Save[].UserID ] | order(_createdAt desc) {
+export const UserSavedPostsQuery = (UserID) => {
+  const query = `*[_type == 'Post' && '${UserID}' in Save[].UserID ] | order(_createdAt desc) {
       Image{
         asset->{
           url
         }
       },
       _id,
-      Destination,
       PostedBy->{
         _id,
         UserName,

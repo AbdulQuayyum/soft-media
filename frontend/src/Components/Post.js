@@ -7,7 +7,7 @@ import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
 
 import { Client, UrlFor } from "../Utilities/Client"
 
-const Pin = ({ Pin }) => {
+const Post = ({ Post }) => {
   const [postHovered, setPostHovered] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
 
@@ -16,8 +16,8 @@ const Pin = ({ Pin }) => {
     resolve => setTimeout(resolve, ms)
   )
 
-  const { PostedBy, Image, _id, Destination } = Pin;
-  // console.log(Pin)
+  const { PostedBy, Image, _id } = Post;
+  // console.log(Post)
 
   const userInfo = localStorage.getItem('User') !== 'undefined' ? JSON.parse(localStorage.getItem('User')) : localStorage.clear();
 
@@ -34,7 +34,7 @@ const Pin = ({ Pin }) => {
       });
   };
 
-  let alreadySaved = Pin?.Save?.filter((item) => item?.PostedBy?._id === userInfo?.sub);
+  let alreadySaved = Post?.Save?.filter((item) => item?.PostedBy?._id === userInfo?.sub);
 
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
 
@@ -75,7 +75,7 @@ const Pin = ({ Pin }) => {
       <div
         onMouseEnter={() => setPostHovered(true)}
         onMouseLeave={() => setPostHovered(false)}
-        onClick={() => navigate(`/PinDetail/${_id}`)}
+        onClick={() => navigate(`/PostDetail/${_id}`)}
         className="relative w-auto overflow-hidden transition-all duration-500 ease-in-out rounded-lg cursor-zoom-in hover:shadow-lg"
       >
         {Image && (
@@ -104,7 +104,7 @@ const Pin = ({ Pin }) => {
               </div>
               {alreadySaved?.length !== 0 ? (
                 <button type="button" className="px-5 py-1 text-base font-bold text-white bg-[#000] outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md">
-                  {Pin?.Save?.length}  Saved
+                  {Post?.Save?.length}  Saved
                 </button>
               ) : (
                 <button
@@ -115,23 +115,11 @@ const Pin = ({ Pin }) => {
                   type="button"
                   className="px-5 py-1 text-base font-bold text-white bg-[#000] outline-none opacity-70 hover:opacity-100 rounded-3xl hover:shadow-md"
                 >
-                  {Pin?.Save?.length}   {savingPost ? 'Saving' : 'Save'}
+                  {Post?.Save?.length}   {savingPost ? 'Saving' : 'Save'}
                 </button>
               )}
             </div>
             <div className="flex items-center justify-between w-full gap-2 ">
-              {Destination?.slice(8).length > 0 ? (
-                <a
-                  href={Destination}
-                  target="_blank"
-                  className="flex items-center gap-2 p-2 pl-4 pr-4 font-bold text-black bg-white rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
-                  rel="noreferrer"
-                >
-                  {' '}
-                  <BsFillArrowUpRightCircleFill />
-                  {Destination?.slice(8, 17)}...
-                </a>
-              ) : undefined}
               {
                 PostedBy?._id === userInfo?.sub && (
                   <button
@@ -162,4 +150,4 @@ const Pin = ({ Pin }) => {
   );
 }
 
-export default Pin
+export default Post

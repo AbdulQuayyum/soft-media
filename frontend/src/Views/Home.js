@@ -5,7 +5,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import { Client } from '../Utilities/Client';
 import { Logo } from '../Assets/Index';
-import { Pins } from './Index';
+import { Posts } from './Index';
 import { Sidebar, UserProfile } from "../Components/Index"
 import { UserQuery } from "../Utilities/Data"
 
@@ -64,7 +64,7 @@ const Home = () => {
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
           <Route path="/UserProfile/:UserID" element={<UserProfile />} />
-          <Route path="/*" element={<Pins User={user && user} />} />
+          <Route path="/*" element={<Posts User={user && user} />} />
         </Routes>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { useParams, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
 
-import { UserCreatedPinsQuery, UserQuery, UserSavedPinsQuery } from '../Utilities/Data';
+import { UserCreatedPostsQuery, UserQuery, UserSavedPostsQuery } from '../Utilities/Data';
 import { Client } from '../Utilities/Client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
@@ -13,7 +13,7 @@ const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-ful
 
 const UserProfile = () => {
   const [user, setUser] = useState();
-  const [pins, setPins] = useState();
+  const [Posts, setPosts] = useState();
   const [text, setText] = useState('Created');
   const [activeBtn, setActiveBtn] = useState('Created');
   const navigate = useNavigate()
@@ -31,16 +31,16 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (text === 'Created') {
-      const createdPinsQuery = UserCreatedPinsQuery(UserID);
+      const createdPostsQuery = UserCreatedPostsQuery(UserID);
 
-      Client.fetch(createdPinsQuery).then((data) => {
-        setPins(data);
+      Client.fetch(createdPostsQuery).then((data) => {
+        setPosts(data);
       });
     } else {
-      const savedPinsQuery = UserSavedPinsQuery(UserID);
+      const savedPostsQuery = UserSavedPostsQuery(UserID);
 
-      Client.fetch(savedPinsQuery).then((data) => {
-        setPins(data);
+      Client.fetch(savedPostsQuery).then((data) => {
+        setPosts(data);
       });
     }
   }, [text, UserID]);
@@ -128,11 +128,11 @@ const UserProfile = () => {
           </button>
         </div>
         <div className="px-2">
-          <MasonryLayout Pins={pins} />
+          <MasonryLayout Posts={Posts} />
         </div>
-        {pins?.length === 0 && (
+        {Posts?.length === 0 && (
           <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
-            No Pins Found!
+            No Posts Found!
           </div>
         )}
       </div>

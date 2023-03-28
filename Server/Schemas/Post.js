@@ -1,6 +1,6 @@
 export default {
-    name: 'Pin',
-    title: 'Pin',
+    name: 'Post',
+    title: 'Post',
     type: 'document',
     fields: [
         {
@@ -12,11 +12,6 @@ export default {
             name: 'About',
             title: 'About',
             type: 'string',
-        },
-        {
-            name: 'Destination',
-            title: 'Destination',
-            type: 'url',
         },
         {
             name: 'Category',
