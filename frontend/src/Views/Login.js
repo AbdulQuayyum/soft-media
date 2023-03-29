@@ -6,7 +6,6 @@ import { Logo, Share } from '../Assets/Index';
 import { Client } from '../Utilities/Client';
 
 const Login = () => {
-  // const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
 
   const CreateOrGetUser = (response) => {
