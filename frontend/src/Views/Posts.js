@@ -6,7 +6,7 @@ import { CreatePost, Feed, Navbar, PostDetail, Search } from "../Components/Inde
 const Posts = ({ User }) => {
     const [searchTerm, setSearchTerm] = useState('');
     return (
-        <div className="px-2 md:px-5">
+        <div className="px-2 md:px-5 dark:bg-[#1c1c24] transition-all duration-500">
             <div className="bg-gray-50">
                 <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} User={User && User} />
             </div>

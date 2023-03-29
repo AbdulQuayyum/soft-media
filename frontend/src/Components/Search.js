@@ -30,7 +30,6 @@ const Search = ({ searchTerm }) => {
 
   return (
     <div>
-
       {loading && <Spinner message="Searching Posts" />}
       {Posts?.length !== 0 && <MasonryLayout Posts={Posts} />}
       {Posts?.length === 0 && searchTerm !== '' && !loading && (

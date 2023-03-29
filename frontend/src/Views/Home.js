@@ -34,7 +34,7 @@ const Home = () => {
   // console.log(user)
 
   return (
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
+    <div className="flex bg-gray-50 dark:bg-[#1c1c24] transition-all duration-500 md:flex-row flex-col h-screen ease-out">
       <div className="hidden md:flex h-screen flex-initial">
         <Sidebar User={user && user} />
       </div>
