@@ -28,7 +28,7 @@ const Post = ({ Post }) => {
         console.log('deleted', id)
         async function reload() {
           await delay(3000)
-          window.location.reload()
+          window.location.reload(true)
         }
         reload()
       });
@@ -60,7 +60,7 @@ const Post = ({ Post }) => {
         .then(() => {
           async function reload() {
             await delay(3000)
-            window.location.reload()
+            window.location.reload(true)
           }
           reload()
           setSavingPost(false);

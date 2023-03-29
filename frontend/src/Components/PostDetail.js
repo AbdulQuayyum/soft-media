@@ -58,7 +58,7 @@ const PostDetail = ({ User }) => {
           setAddingComment(false);
           async function reload() {
             await delay(3000)
-            window.location.reload()
+            window.location.reload(true)
           }
           reload()
         });

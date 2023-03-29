@@ -47,6 +47,7 @@ const Feed = () => {
       {Posts && (
         <MasonryLayout Posts={Posts} />
       )}
+      {/* {console.log(Posts)} */}
     </div>
   )
 }

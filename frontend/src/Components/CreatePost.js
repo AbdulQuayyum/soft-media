@@ -80,8 +80,8 @@ const CreatePost = ({ User }) => {
         .then(() => {
           setCreatingPost(false)
           async function reload() {
-            await delay(1000)
-            navigate('/');
+            await delay(5000)
+            // navigate('/');
           }
           reload()
         });
@@ -192,6 +192,8 @@ const CreatePost = ({ User }) => {
                 getOptionValue={(Categories) => Categories.name}
                 onChange={(e) => { setCategory(e?.name) }}
               />
+              {/* {console.log(Categories)} */}
+              {console.log(Category)}
             </div>
             <div className="flex justify-end items-end mt-5">
               <button

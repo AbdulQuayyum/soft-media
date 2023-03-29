@@ -169,7 +169,7 @@ export const PostDetailMorePostQuery = (Post) => {
 };
 
 export const SearchQuery = (searchTerm) => {
-  const query = `*[_type == "Post" && title match '${searchTerm}*' || category match '${searchTerm}*' || about match '${searchTerm}*']{
+  const query = `*[_type == "Post" && title match '${searchTerm}*' || Category match '${searchTerm}*' || about match '${searchTerm}*']{
           Image{
             asset->{
               url
