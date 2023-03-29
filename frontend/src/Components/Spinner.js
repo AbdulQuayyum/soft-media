@@ -2,10 +2,13 @@ import React from 'react';
 import { ThreeDots } from 'react-loader-spinner';
 
 function Spinner({ message }) {
+  const theme = localStorage.getItem("color-theme")
+  // console.log(theme)
+
   return (
     <div className="flex flex-col justify-center items-center w-full h-full">
       <ThreeDots
-        color="#000"
+        color={theme === "dark" ? "#fff" : "#000"}
         // height={50}
         // width={200}
         // radius={10}
@@ -19,7 +22,7 @@ function Spinner({ message }) {
         className="m-5"
       />
 
-      <p className="text-lg text-center px-2">{message}</p>
+      <p className="text-lg text-center px-2 dark:text-white">{message}</p>
     </div>
   );
 }

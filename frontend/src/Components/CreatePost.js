@@ -102,8 +102,8 @@ const CreatePost = ({ User }) => {
       {fields && (
         <p className="text-red-500 mb-5 text-xl transition-all duration-150 ease-in ">Please add all fields.</p>
       )}
-      <div className=" flex lg:flex-row flex-col justify-center items-center bg-white lg:p-5 p-3 lg:w-4/5  w-full">
-        <div className="bg-secondaryColor p-3 flex flex-0.7 w-full">
+      <div className=" flex lg:flex-row flex-col justify-center items-center bg-white dark:bg-transparent lg:p-5 p-3 lg:w-4/5  w-full">
+        <div className="bg-secondaryColor dark:bg-transparent p-3 flex flex-0.7 w-full">
           <div className=" flex justify-center items-center flex-col border-2 border-dotted border-gray-300 p-3 w-full h-420">
             {loading && (
               <Spinner />
@@ -118,10 +118,10 @@ const CreatePost = ({ User }) => {
               <label>
                 <div className="flex cursor-pointer flex-col items-center justify-center h-full">
                   <div className="flex flex-col justify-center items-center">
-                    <p className="font-bold text-5xl">
+                    <p className="font-bold text-5xl dark:text-white">
                       <AiOutlineCloudUpload />
                     </p>
-                    <p className="text-lg">Click to upload</p>
+                    <p className="text-lg dark:text-white">Click to upload</p>
                   </div>
 
                   <p className=" mt-28 text-gray-400">
@@ -160,16 +160,16 @@ const CreatePost = ({ User }) => {
             value={Title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a Title"
-            className="outline-none text-xl sm:text-2xl font-bold border-b-2 border-gray-200 p-2"
+            className="outline-none text-xl sm:text-2xl font-bold border-b-2 border-gray-200 p-2 dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white"
           />
           {User && (
-            <div className="flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg ">
+            <div className="flex gap-2 mt-2 mb-2 items-center bg-white dark:bg-transparent rounded-lg ">
               <img
                 alt="user profile"
                 className="w-10 h-10 rounded-full"
                 referrerPolicy="no-referrer"
                 src={User.Image} />
-              <p className="font-bold">{User.UserName}</p>
+              <p className="font-bold dark:text-white">{User.UserName}</p>
             </div>
           )}
           <input
@@ -177,11 +177,11 @@ const CreatePost = ({ User }) => {
             value={About}
             onChange={(e) => setAbout(e.target.value)}
             placeholder="Tell everyone what your Post is About"
-            className="outline-none text-base border-b-2 border-gray-200 p-2"
+            className="outline-none text-base border-b-2 dark:bg-transparent dark:border-2 dark:rounded-lg dark:border-white border-gray-200 p-2"
           />
           <div className="flex flex-col">
             <div>
-              <p className="mb-2 font-semibold text:base sm:text-lg">Choose Image Category</p>
+              <p className="mb-2 font-semibold text:base sm:text-lg dark:text-white">Choose Image Category</p>
               <Select
                 className='py-2'
                 styles={customStyles}
@@ -199,7 +199,7 @@ const CreatePost = ({ User }) => {
               <button
                 type="button"
                 onClick={savePost}
-                className="bg-[#000] text-white font-bold p-2 rounded-full w-28 outline-none"
+                className="bg-[#000] text-white dark:text-black dark:bg-white font-bold p-2 rounded-full w-28 outline-none"
               >
                 {creatingPost ? "Creating..." : "Create"}
               </button>

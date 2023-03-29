@@ -8,7 +8,7 @@ import { Categories } from "../Utilities/Data"
 import { Logo } from "../Assets/Index"
 
 const isNotActiveStyle = 'flex items-center px-5 gap-3 dark:text-white dark:hover:text-gray-500 text-gray-500 hover:text-black transition-all duration-500 ease-in-out capitalize';
-const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black dark:text-gray-600 dark:border-white transition-all duration-500 ease-in-out capitalize';
+const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black dark:text-gray-600 dark:border-gray-600 transition-all duration-500 ease-in-out capitalize';
 
 const Sidebar = ({ closeToggle, User }) => {
   const navigate = useNavigate()
@@ -77,7 +77,7 @@ const Sidebar = ({ closeToggle, User }) => {
       {User && (
         <Link
           to={`UserProfile/${User._id}`}
-          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white dark:bg-black transition-all duration-500 dark:text-white rounded-lg shadow-lg mx-3"
+          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white dark:bg-black transition-all duration-500 dark:text-white  rounded-lg shadow-lg mx-3"
           onClick={handleCloseSidebar}
         >
           <img

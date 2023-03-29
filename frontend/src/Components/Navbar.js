@@ -29,7 +29,7 @@ const Navbar = ({ searchTerm, setSearchTerm, User }) => {
               referrerPolicy="no-referrer"
               src={User.Image} />
           </Link>
-          <Link to="/CreatePost" className="bg-black text-white rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
+          <Link to="/CreatePost" className="bg-black text-white dark:bg-white dark:text-black rounded-lg w-12 h-12 md:w-14 md:h-12 flex justify-center items-center">
             <IoMdAdd />
           </Link>
         </div>

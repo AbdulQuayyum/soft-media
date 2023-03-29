@@ -8,8 +8,8 @@ import { Client } from '../Utilities/Client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
 
-const activeBtnStyles = 'bg-black text-white font-bold p-2 rounded-full w-20 outline-none';
-const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none';
+const activeBtnStyles = 'bg-black text-white dark:text-black dark:bg-white font-bold py-2 px-4 rounded-full w-22 outline-none';
+const notActiveBtnStyles = 'bg-primary mr-4 text-black dark:text-white font-bold py-2 px-4 rounded-full w-22 outline-none';
 
 const UserProfile = () => {
   const [user, setUser] = useState();
@@ -77,7 +77,7 @@ const UserProfile = () => {
               alt="user pic"
             />
           </div>
-          <h1 className="font-bold text-3xl text-center mt-3">
+          <h1 className="font-bold text-3xl dark:text-white text-center mt-3">
             {user.UserName}
           </h1>
           <div className="absolute top-0 z-1 right-0 p-2">
