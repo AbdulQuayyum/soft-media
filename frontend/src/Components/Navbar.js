@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { IoMdAdd, IoMdSearch } from 'react-icons/io';
+import { Toggler } from "../Theme/Index"
 
 const Navbar = ({ searchTerm, setSearchTerm, User }) => {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ const Navbar = ({ searchTerm, setSearchTerm, User }) => {
           />
         </div>
         <div className="flex gap-3 ">
+          <Toggler />
           <Link to={`UserProfile/${User?._id}`} className="hidden md:block">
             <img
               alt="User Pic"
