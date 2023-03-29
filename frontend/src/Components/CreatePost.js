@@ -37,7 +37,7 @@ const CreatePost = ({ User }) => {
   const uploadImage = (e) => {
     const selectedFile = e.target.files[0];
     // uploading asset to sanity
-    if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/Jiff') {
+    if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/jfif') {
       setWrongImageType(false);
       setLoading(true);
       Client.assets
@@ -80,8 +80,8 @@ const CreatePost = ({ User }) => {
         .then(() => {
           setCreatingPost(false)
           async function reload() {
-            await delay(5000)
-            // navigate('/');
+            await delay(2000)
+            navigate('/');
           }
           reload()
         });
@@ -193,7 +193,7 @@ const CreatePost = ({ User }) => {
                 onChange={(e) => { setCategory(e?.name) }}
               />
               {/* {console.log(Categories)} */}
-              {console.log(Category)}
+              {/* {console.log(Category)} */}
             </div>
             <div className="flex justify-end items-end mt-5">
               <button

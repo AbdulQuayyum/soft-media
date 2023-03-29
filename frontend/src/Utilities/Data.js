@@ -28,7 +28,7 @@ export const Categories = [
     image: 'https://i.pinimg.com/474x/de/24/57/de24578fe63da09a52e6878d594c35e7.jpg',
   },
   {
-    name: 'ducks',
+    name: 'animals',
     image: 'https://i.pinimg.com/564x/6d/73/5b/6d735bba86e0ec777fad9e3008ac718d.jpg',
   },
   {
@@ -36,16 +36,8 @@ export const Categories = [
     image: 'https://i.pinimg.com/736x/fe/ec/fc/feecfc51da2ac1f18b5b44d87ffb9a02.jpg',
   },
   {
-    name: 'oceans',
+    name: 'nature',
     image: 'https://i.pinimg.com/564x/3e/7a/51/3e7a5130909c2097ed3f84be8826eecc.jpg',
-  },
-  {
-    name: 'forests',
-    image: 'https://i.pinimg.com/564x/11/0e/bd/110ebd9866ad99dd12e4ffdbf9c19864.jpg',
-  },
-  {
-    name: 'wild life',
-    image: 'https://i.pinimg.com/564x/0d/d8/cc/0dd8cc308b18416555a020c2dbcdc638.jpg',
   },
   {
     name: 'art',
@@ -68,12 +60,16 @@ export const Categories = [
     image: 'https://i.pinimg.com/474x/dc/97/4e/dc974e453e02886762d75825dca5c7f3.jpg',
   },
   {
-    name: 'quotes',
-    image: 'https://i.pinimg.com/474x/c6/90/ae/c690ae0f830823b6eff219ccb267bfab.jpg',
+    name: 'celebrity',
+    image: 'https://i.pinimg.com/564x/30/18/e5/3018e56dd3a232f5bac6bdb15c28609f.jpg',
   },
   {
-    name: 'dogs',
-    image: 'https://i.pinimg.com/474x/24/bc/1b/24bc1b4f7fe377849b845c3182f47b4c.jpg',
+    name: 'technology',
+    image: 'https://i.pinimg.com/564x/03/2b/b4/032bb4387d0796e02d7e23ac92adea99.jpg',
+  },
+  {
+    name: 'quotes',
+    image: 'https://i.pinimg.com/474x/c6/90/ae/c690ae0f830823b6eff219ccb267bfab.jpg',
   },
   {
     name: 'memes',
