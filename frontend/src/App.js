@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { AnalyticsWrapper } from "./Components/Analytics";
 
 import MainRoutes from "./Routes/Main.Routes";
 
@@ -14,6 +15,7 @@ const App = () => {
 
   return (
     <>
+      < AnalyticsWrapper />
       <MainRoutes />
     </>
   );
