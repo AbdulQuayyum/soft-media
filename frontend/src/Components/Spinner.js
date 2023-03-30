@@ -22,7 +22,7 @@ function Spinner({ message }) {
         className="m-5"
       />
 
-      <p className="text-lg text-center px-2 dark:text-white">{message}</p>
+      <p className="text-lg text-center px-2 transition-all duration-500 dark:text-white">{message}</p>
     </div>
   );
 }

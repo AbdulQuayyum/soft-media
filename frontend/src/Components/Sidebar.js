@@ -31,7 +31,7 @@ const Sidebar = ({ closeToggle, User }) => {
   }
 
   return (
-    <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar transition-all duration-500 dark:bg-[#1c1c24]">
+    <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar transition-all duration-500 dark:bg-[#1a1a22]">
       <div className="flex flex-col">
         <Link
           to="/"
@@ -67,7 +67,7 @@ const Sidebar = ({ closeToggle, User }) => {
             </NavLink>
           ))}
           <button
-            className='flex items-center pt-3 px-5 gap-3 text-gray-500 hover:text-black dark:text-white dark:hover:text-gray-500 dark:border-gray-300 transition-all duration-500 ease-in-out capitalize text-lg border-t-2'
+            className='flex items-center pt-3 px-5 gap-3 text-gray-500 hover:text-black dark:text-white dark:hover:text-gray-500 dark:border-gray-50 transition-all duration-500 ease-in-out capitalize text-lg border-t-2'
             onClick={handleLogout} >
             Logout
             < RiLogoutCircleRLine />
@@ -77,7 +77,7 @@ const Sidebar = ({ closeToggle, User }) => {
       {User && (
         <Link
           to={`UserProfile/${User._id}`}
-          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white dark:bg-black transition-all duration-500 dark:text-white  rounded-lg shadow-lg mx-3"
+          className="flex my-5 mb-3 gap-2 p-2 items-center bg-transparent transition-all duration-500 dark:text-white  rounded-lg shadow-lg mx-3"
           onClick={handleCloseSidebar}
         >
           <img

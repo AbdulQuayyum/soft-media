@@ -10,12 +10,12 @@ const Toggler = () => {
             {theme === 'dark' ? (
                 <FaSun
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    className="text-gray-500 dark:text-gray-400 w-6 h-6 md:w-8 md:h-6 flex justify-center items-center cursor-pointer"
+                    className="text-gray-500 dark:text-gray-50 transition-all duration-500 w-6 h-6 md:w-8 md:h-6 flex justify-center items-center cursor-pointer"
                 />
             ) : (
                 <FaMoon
                     onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    className="text-gray-500 dark:text-gray-400 w-6 h-6 md:w-8 md:h-6 flex justify-center items-center cursor-pointer"
+                    className="text-[#1c1c24] dark:text-gray-50 transition-all duration-500 w-6 h-6 md:w-8 md:h-6 flex justify-center items-center cursor-pointer"
                 />
             )}
         </div>

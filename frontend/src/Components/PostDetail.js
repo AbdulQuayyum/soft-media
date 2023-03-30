@@ -97,10 +97,10 @@ const PostDetail = ({ User }) => {
               </div>
             </div>
             <div>
-              <h1 className="text-4xl font-bold break-words dark:text-white mt-3">
+              <h1 className="text-4xl font-bold break-words transition-all duration-500 dark:text-white mt-3">
                 {PostDetail.Title}
               </h1>
-              <p className="mt-3 dark:text-white">{PostDetail.About}</p>
+              <p className="mt-3 transition-all duration-500 dark:text-white">{PostDetail.About}</p>
             </div>
             <Link to={`/UserProfile/${PostDetail?.PostedBy._id}`} className="flex gap-2 mt-5 items-center bg-white dark:bg-zinc-900 w-max px-3 py-1 rounded-lg ">
               <img
@@ -108,20 +108,20 @@ const PostDetail = ({ User }) => {
                 className="w-10 h-10 rounded-full"
                 referrerPolicy="no-referrer"
                 src={PostDetail?.PostedBy.Image} />
-              <p className="font-bold dark:text-white">{PostDetail?.PostedBy.UserName}</p>
+              <p className="font-bold transition-all duration-500 dark:text-white">{PostDetail?.PostedBy.UserName}</p>
             </Link>
-            <h2 className="mt-5 text-2xl dark:text-white">Comments</h2>
+            <h2 className="mt-5 text-2xl transition-all duration-500 dark:text-white">Comments</h2>
             <div className="max-h-370 overflow-y-auto">
               {PostDetail?.Comments?.map((item) => (
-                <div className="flex gap-2 mt-5 items-center bg-white dark:bg-transparent rounded-lg" key={item.Comment}>
+                <div className="flex gap-2 mt-5 items-center bg-white dark:bg-transparent transition-all duration-500 rounded-lg" key={item.Comment}>
                   <img
                     alt="user-profile"
                     className="w-10 h-10 rounded-full cursor-pointer"
                     referrerPolicy="no-referrer"
                     src={item.PostedBy?.Image} />
                   <div className="flex flex-col">
-                    <p className="font-bold dark:text-white">{item.PostedBy?.UserName}</p>
-                    <p className='dark:text-white'>{item.Comment}</p>
+                    <p className="font-bold transition-all duration-500 dark:text-white">{item.PostedBy?.UserName}</p>
+                    <p className='transition-all duration-500 dark:text-white'>{item.Comment}</p>
                   </div>
                 </div>
               ))}
@@ -143,7 +143,7 @@ const PostDetail = ({ User }) => {
               />
               <button
                 type="button"
-                className="bg-[#000] text-white dark:text-black dark:bg-white rounded-full px-6 py-2 font-semibold text-base outline-none"
+                className="bg-[#000] text-white dark:text-black dark:bg-white rounded-full px-6 py-2 font-semibold text-base outline-none transition-all duration-500"
                 onClick={addComment}
               >
                 {addingComment ? 'Commenting...' : 'Comment'}

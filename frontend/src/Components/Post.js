@@ -144,7 +144,7 @@ const Post = ({ Post }) => {
           className="object-cover w-8 h-8 rounded-full"
           referrerPolicy="no-referrer"
           src={PostedBy?.Image} />
-        <p className="font-semibold capitalize dark:text-white">{PostedBy?.UserName}</p>
+        <p className="font-semibold capitalize transition-all duration-500 dark:text-white">{PostedBy?.UserName}</p>
       </Link>
     </div>
   );
