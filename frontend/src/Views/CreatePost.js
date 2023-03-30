@@ -6,7 +6,7 @@ import Select from 'react-select'
 
 import { Categories } from '../Utilities/Data';
 import { Client } from '../Utilities/Client';
-import Spinner from "./Spinner"
+import { Spinner } from "../Components/Index"
 
 const CreatePost = ({ User }) => {
   const [Title, setTitle] = useState('');

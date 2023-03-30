@@ -5,8 +5,7 @@ import { googleLogout } from '@react-oauth/google';
 
 import { UserCreatedPostsQuery, UserQuery, UserSavedPostsQuery } from '../Utilities/Data';
 import { Client } from '../Utilities/Client';
-import MasonryLayout from './MasonryLayout';
-import Spinner from './Spinner';
+import { MasonryLayout, Spinner } from "../Components/Index"
 
 const activeBtnStyles = 'bg-black text-white dark:text-black transition-all duration-500 dark:bg-white font-bold py-2 px-4 rounded-full w-22 outline-none';
 const notActiveBtnStyles = 'bg-primary mr-4 text-black transition-all duration-500 dark:text-white font-bold py-2 px-4 rounded-full w-22 outline-none';

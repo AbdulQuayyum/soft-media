@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Client, UrlFor } from '../Utilities/Client';
 import { PostDetailMorePostQuery, PostDetailQuery } from '../Utilities/Data';
-import MasonryLayout from "./MasonryLayout"
-import Spinner from './Spinner';
+import MasonryLayout from "../Components/MasonryLayout"
+import Spinner from '../Components/Spinner';
 
 const PostDetail = ({ User }) => {
   const { PostID } = useParams();

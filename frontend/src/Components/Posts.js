@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { CreatePost, Feed, Navbar, PostDetail, Search } from "../Components/Index"
+import { CreatePost, PostDetail, Search } from "../Views/Index"
+import { Feed, Navbar } from "./Index"
 
 const Posts = ({ User }) => {
     const [searchTerm, setSearchTerm] = useState('');

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Client } from '../Utilities/Client';
 import { FeedQuery, SearchQuery } from '../Utilities/Data';
-import MasonryLayout from './MasonryLayout';
-import Spinner from './Spinner';
+import { MasonryLayout, Spinner } from "../Components/Index"
 
 const Search = ({ searchTerm }) => {
   const [Posts, setPosts] = useState()

@@ -5,8 +5,8 @@ import { Link, Route, Routes } from 'react-router-dom';
 
 import { Client } from '../Utilities/Client';
 import { Logo } from '../Assets/Index';
-import { Posts } from './Index';
-import { Sidebar, UserProfile } from "../Components/Index"
+import { Posts, Sidebar } from "../Components/Index"
+import UserProfile from './UserProfile';
 import { UserQuery } from "../Utilities/Data"
 
 const Home = () => {
