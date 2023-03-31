@@ -12,7 +12,7 @@ const Search = ({ searchTerm }) => {
     if (searchTerm !== '') {
       setLoading(true);
       const query = SearchQuery(searchTerm.toLowerCase());
-      console.log(query);
+      // console.log(query);
       Client.fetch(query)
         .then((data) => {
           setPosts(data);
@@ -32,7 +32,7 @@ const Search = ({ searchTerm }) => {
       {loading && <Spinner message="Searching Posts" />}
       {Posts?.length !== 0 && <MasonryLayout Posts={Posts} />}
       {Posts?.length === 0 && searchTerm !== '' && !loading && (
-        <div className="mt-10 text-center text-xl ">No Posts related Found!</div>
+        <div className="mt-10 text-xl text-center ">No Posts related Found!</div>
       )}
     </div>
   );

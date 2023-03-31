@@ -25,7 +25,7 @@ const Post = ({ Post }) => {
     Client
       .delete(id)
       .then(() => {
-        console.log('deleted', id)
+        // console.log('deleted', id)
         async function reload() {
           await delay(3000)
           window.location.reload(true)
