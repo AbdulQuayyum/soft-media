@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { useParams, useNavigate } from 'react-router-dom';
 import { googleLogout } from '@react-oauth/google';
+import cogoToast from 'cogo-toast';
 
 import { UserCreatedPostsQuery, UserQuery, UserSavedPostsQuery } from '../Utilities/Data';
 import { Client } from '../Utilities/Client';
@@ -55,34 +56,35 @@ const UserProfile = () => {
       await delay(3000)
       navigate("/Login")
     }
+    cogoToast.success("Logging out successfully, navigating to login page soon", { position: 'top-right', heading: 'Successful' })
     Logout()
   }
 
   if (!user) return <Spinner message="Loading profile" />;
 
   return (
-    <div className="relative pb-2 h-full justify-center items-center">
+    <div className="relative items-center justify-center h-full pb-2">
       <div className="flex flex-col pb-5">
         <div className="relative flex flex-col mb-7">
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center justify-center">
             <img
-              className=" w-full h-370 2xl:h-510 shadow-lg object-cover"
+              className="object-cover w-full shadow-lg  h-370 2xl:h-510"
               src="https://source.unsplash.com/1600x900/?nature,photography,cats,moon"
               alt="user-pic"
             />
             <img
-              className="rounded-full w-20 h-20 -mt-10 shadow-xl object-cover"
+              className="object-cover w-20 h-20 -mt-10 rounded-full shadow-xl"
               src={user.Image}
               alt="user pic"
             />
           </div>
-          <h1 className="font-bold text-3xl dark:text-white text-center mt-3">
+          <h1 className="mt-3 text-3xl font-bold text-center dark:text-white">
             {user.UserName}
           </h1>
-          <div className="absolute top-0 z-1 right-0 p-2">
+          <div className="absolute top-0 right-0 p-2 z-1">
             {UserID === userInfo.sub && (
               <button
-                className='bg-white p-2 rounded-full cursor-pointer outline-none shadow-md'
+                className='p-2 bg-white rounded-full shadow-md outline-none cursor-pointer'
                 onClick={handleLogout} >
                 < RiLogoutCircleRLine color="black" fontSize={21} />
               </button>
@@ -115,7 +117,7 @@ const UserProfile = () => {
           <MasonryLayout Posts={Posts} />
         </div>
         {Posts?.length === 0 && (
-          <div className="flex justify-center font-bold items-center w-full text-1xl mt-2">
+          <div className="flex items-center justify-center w-full mt-2 font-bold text-1xl">
             No Posts Found!
           </div>
         )}

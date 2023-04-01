@@ -4,6 +4,7 @@ import { GoogleLogin } from '@react-oauth/google'
 import { useNavigate } from 'react-router-dom';
 import { Logo, Share } from '../Assets/Index';
 import { Client } from '../Utilities/Client';
+import cogoToast from 'cogo-toast';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ const Login = () => {
           <div className="shadow-2xl">
             <GoogleLogin
               onSuccess={response => { CreateOrGetUser(response) }}
-              onError={() => { console.log('Login Failed') }}
+              onError={() => { cogoToast.error("Please try again", { position: 'top-right', heading: 'Login Failed' }) }}
               shape="circle"
               size='large'
               text="continue_with"

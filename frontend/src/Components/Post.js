@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { AiTwotoneDelete } from 'react-icons/ai';
-import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
+import cogoToast from 'cogo-toast';
 
 import { Client, UrlFor } from "../Utilities/Client"
 
@@ -30,6 +30,7 @@ const Post = ({ Post }) => {
           await delay(3000)
           window.location.reload(true)
         }
+        cogoToast.success("Post deleted successfully", { position: 'top-right', heading: 'Successful' })
         reload()
       });
   };
@@ -62,6 +63,7 @@ const Post = ({ Post }) => {
             await delay(3000)
             window.location.reload(true)
           }
+          cogoToast.success("Post saved successfully", { position: 'top-right', heading: 'Successful' })
           reload()
           setSavingPost(false);
         });

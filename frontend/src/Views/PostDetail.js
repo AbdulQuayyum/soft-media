@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdDownloadForOffline } from 'react-icons/md';
 import { Link, useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import cogoToast from 'cogo-toast';
 
 import { Client, UrlFor } from '../Utilities/Client';
 import { PostDetailMorePostQuery, PostDetailQuery } from '../Utilities/Data';
@@ -60,6 +61,7 @@ const PostDetail = ({ User }) => {
             await delay(3000)
             window.location.reload(true)
           }
+          cogoToast.success("Comment added successfully", { position: 'top-right', heading: 'Successful' })
           reload()
         });
     }
@@ -76,33 +78,33 @@ const PostDetail = ({ User }) => {
   return (
     <>
       {PostDetail && (
-        <div className="flex xl:flex-row flex-col m-auto bg-white dark:bg-transparent transition-all duration-500" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
-          <div className="flex justify-center items-center md:items-start flex-initial">
+        <div className="flex flex-col m-auto transition-all duration-500 bg-white xl:flex-row dark:bg-transparent" style={{ maxWidth: '1500px', borderRadius: '32px' }}>
+          <div className="flex items-center justify-center flex-initial md:items-start">
             <img
               alt="user-post"
-              className="rounded-t-3xl rounded-b-lg"
+              className="rounded-b-lg rounded-t-3xl"
               referrerPolicy="no-referrer"
               src={(PostDetail?.Image && UrlFor(PostDetail?.Image).url())} />
           </div>
-          <div className="w-full p-5 flex-1 xl:min-w-620">
+          <div className="flex-1 w-full p-5 xl:min-w-620">
             <div className="flex items-center justify-between">
-              <div className="flex gap-2 items-center">
+              <div className="flex items-center gap-2">
                 <a
                   href={`${PostDetail.Image.asset.url}?dl=`}
                   download
-                  className="bg-secondaryColor p-2 text-xl rounded-full flex items-center justify-center text-dark opacity-75 hover:opacity-100"
+                  className="flex items-center justify-center p-2 text-xl rounded-full opacity-75 bg-secondaryColor text-dark hover:opacity-100"
                 >
                   <MdDownloadForOffline />
                 </a>
               </div>
             </div>
             <div>
-              <h1 className="text-4xl font-bold break-words transition-all duration-500 dark:text-white mt-3">
+              <h1 className="mt-3 text-4xl font-bold break-words transition-all duration-500 dark:text-white">
                 {PostDetail.Title}
               </h1>
               <p className="mt-3 transition-all duration-500 dark:text-white">{PostDetail.About}</p>
             </div>
-            <Link to={`/UserProfile/${PostDetail?.PostedBy._id}`} className="flex gap-2 mt-5 items-center bg-white dark:bg-zinc-900 w-max px-3 py-1 rounded-lg ">
+            <Link to={`/UserProfile/${PostDetail?.PostedBy._id}`} className="flex items-center gap-2 px-3 py-1 mt-5 bg-white rounded-lg dark:bg-zinc-900 w-max ">
               <img
                 alt="user profile"
                 className="w-10 h-10 rounded-full"
@@ -111,9 +113,9 @@ const PostDetail = ({ User }) => {
               <p className="font-bold transition-all duration-500 dark:text-white">{PostDetail?.PostedBy.UserName}</p>
             </Link>
             <h2 className="mt-5 text-2xl transition-all duration-500 dark:text-white">Comments</h2>
-            <div className="max-h-370 overflow-y-auto">
+            <div className="overflow-y-auto max-h-370">
               {PostDetail?.Comments?.map((item) => (
-                <div className="flex gap-2 mt-5 items-center bg-white dark:bg-transparent transition-all duration-500 rounded-lg" key={item.Comment}>
+                <div className="flex items-center gap-2 mt-5 transition-all duration-500 bg-white rounded-lg dark:bg-transparent" key={item.Comment}>
                   <img
                     alt="user-profile"
                     className="w-10 h-10 rounded-full cursor-pointer"
@@ -126,7 +128,7 @@ const PostDetail = ({ User }) => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-wrap mt-6 gap-3">
+            <div className="flex flex-wrap gap-3 mt-6">
               <Link to={`/UserProfile/${User._id}`}>
                 <img
                   alt="user profile"
@@ -135,7 +137,7 @@ const PostDetail = ({ User }) => {
                   src={User.Image} />
               </Link>
               <input
-                className=" flex-1 border-gray-100 outline-none border-2 p-2 rounded-2xl focus:border-gray-300"
+                className="flex-1 p-2 border-2 border-gray-100 outline-none rounded-2xl focus:border-gray-300"
                 type="text"
                 placeholder="Add a Comment"
                 value={Comment}
@@ -154,7 +156,7 @@ const PostDetail = ({ User }) => {
       )}
       {/* {console.log(Posts)} */}
       {Posts?.length > 0 && (
-        <h2 className="text-center font-bold text-2xl mt-8 mb-4">
+        <h2 className="mt-8 mb-4 text-2xl font-bold text-center">
           More like this
         </h2>
       )}

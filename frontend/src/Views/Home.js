@@ -20,8 +20,6 @@ const Home = () => {
   useEffect(() => {
     const query = UserQuery(userInfo?.sub);
 
-    // console.log(query);
-
     Client.fetch(query)
       .then((data) => {
         setUser(data[0]);
@@ -35,11 +33,11 @@ const Home = () => {
 
   return (
     <div className="flex bg-gray-50 dark:bg-[#1c1c24] transition-all duration-500 md:flex-row flex-col h-screen ease-out">
-      <div className="hidden md:flex h-screen flex-initial">
+      <div className="flex-initial hidden h-screen md:flex">
         <Sidebar User={user && user} />
       </div>
-      <div className="flex md:hidden flex-row">
-        <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
+      <div className="flex flex-row md:hidden">
+        <div className="flex flex-row items-center justify-between w-full p-2 shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setToggleSidebar(true)} />
           <Link to="/">
             <img src={Logo} alt="logo" className="w-16 h-auto" />
@@ -47,21 +45,21 @@ const Home = () => {
           <Link to={`UserProfile/${user?._id}`}>
             <img
               alt="user-pic"
-              className="w-9 h-9 rounded-full "
+              className="rounded-full w-9 h-9 "
               referrerPolicy="no-referrer"
               src={user?.Image} />
           </Link>
         </div>
         {toggleSidebar && (
-          <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
-            <div className="absolute w-full flex justify-end items-center p-2">
+          <div className="fixed z-10 w-4/5 h-screen overflow-y-auto bg-white shadow-md animate-slide-in">
+            <div className="absolute flex items-center justify-end w-full p-2">
               <AiFillCloseCircle fontSize={30} className="cursor-pointer" onClick={() => setToggleSidebar(false)} />
             </div>
             <Sidebar closeToggle={setToggleSidebar} User={user && user} />
           </div>
         )}
       </div>
-      <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
+      <div className="flex-1 h-screen pb-2 overflow-y-scroll" ref={scrollRef}>
         <Routes>
           <Route path="/UserProfile/:UserID" element={<UserProfile />} />
           <Route path="/*" element={<Posts User={user && user} />} />

@@ -4,6 +4,8 @@ import { RxDashboard } from 'react-icons/rx';
 import { RiLogoutCircleRLine } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 import { googleLogout } from '@react-oauth/google';
+import cogoToast from 'cogo-toast';
+
 import { Categories } from "../Utilities/Data"
 import { Logo } from "../Assets/Index"
 
@@ -27,6 +29,7 @@ const Sidebar = ({ closeToggle, User }) => {
       await delay(3000)
       navigate("/Login")
     }
+    cogoToast.success("Logging out successfully, navigating to login page soon", { position: 'top-right', heading: 'Successful' })
     Logout()
   }
 
@@ -35,7 +38,7 @@ const Sidebar = ({ closeToggle, User }) => {
       <div className="flex flex-col">
         <Link
           to="/"
-          className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
+          className="flex items-center gap-2 px-5 pt-1 my-6 w-190"
           onClick={handleCloseSidebar}
         >
           <img src={Logo} alt="logo" className="w-12 h-auto" />
@@ -50,7 +53,7 @@ const Sidebar = ({ closeToggle, User }) => {
             <RxDashboard />
             Home
           </NavLink>
-          <h3 className="mt-2 dark:text-white dark:hover:text-gray-500 transition-all duration-500 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
+          <h3 className="px-5 mt-2 text-base transition-all duration-500 dark:text-white dark:hover:text-gray-500 2xl:text-xl">Discover cateogries</h3>
           {Categories.slice(0, Categories.length).map((Category) => (
             <NavLink
               to={`/Category/${Category.name}`}
@@ -67,7 +70,7 @@ const Sidebar = ({ closeToggle, User }) => {
             </NavLink>
           ))}
           <button
-            className='flex items-center pt-3 px-5 gap-3 text-gray-500 hover:text-black dark:text-white dark:hover:text-gray-500 dark:border-gray-50 transition-all duration-500 ease-in-out capitalize text-lg border-t-2'
+            className='flex items-center gap-3 px-5 pt-3 text-lg text-gray-500 capitalize transition-all duration-500 ease-in-out border-t-2 hover:text-black dark:text-white dark:hover:text-gray-500 dark:border-gray-50'
             onClick={handleLogout} >
             Logout
             < RiLogoutCircleRLine />
@@ -77,7 +80,7 @@ const Sidebar = ({ closeToggle, User }) => {
       {User && (
         <Link
           to={`UserProfile/${User._id}`}
-          className="flex my-5 mb-3 gap-2 p-2 items-center bg-transparent transition-all duration-500 dark:text-white  rounded-lg shadow-lg mx-3"
+          className="flex items-center gap-2 p-2 mx-3 my-5 mb-3 transition-all duration-500 bg-transparent rounded-lg shadow-lg dark:text-white"
           onClick={handleCloseSidebar}
         >
           <img
